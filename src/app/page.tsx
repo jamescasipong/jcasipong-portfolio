@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Moon,
   Sun,
@@ -41,13 +41,11 @@ export default function CompactAnimatedPortfolio() {
     }
   });
   const [activeSection, setActiveSection] = useState("home");
-  const [isLoading, setIsLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
-      setIsLoading(false);
       document.body.style.overflow = "visible";
     }, 0);
     return () => {
