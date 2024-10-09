@@ -59,14 +59,7 @@ export default function CompactAnimatedPortfolio() {
     document.documentElement.classList.toggle("dark");
   };
 
-  const sections = [
-    "home",
-    "about",
-    "projects",
-    "skills-experience",
-    "blog",
-    "contact",
-  ];
+  const sections = ["home", "about", "projects", "skills-experience", "blog"];
 
   const handleScroll = () => {
     const currentSection = sections.find((section) => {
@@ -179,8 +172,8 @@ export default function CompactAnimatedPortfolio() {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
-      <div className="bg-background text-foreground">
+    <div className={`justify-center mx-auto w-full ${darkMode ? "dark" : ""}`}>
+      <div className="bg-background text-foreground w-full overflow-hidden">
         {/* Header */}
         <header className="fixed top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4">
@@ -252,7 +245,7 @@ export default function CompactAnimatedPortfolio() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="text-center">
+            <div className="text-center ">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -298,7 +291,8 @@ export default function CompactAnimatedPortfolio() {
                     transition={{ duration: 0.2 }}
                   >
                     <Button variant="outline">
-                      <Mail className="mr-2 h-4 w-4" /> Email
+                      <Mail className="sm:mr-2 mr-0 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">Email</p>
                     </Button>
                   </motion.div>
                   <motion.div
@@ -306,7 +300,8 @@ export default function CompactAnimatedPortfolio() {
                     transition={{ duration: 0.2 }}
                   >
                     <Button variant="outline">
-                      <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
+                      <Linkedin className="sm:mr-2 mr-0 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">Linkedin</p>
                     </Button>
                   </motion.div>
                   <motion.div
@@ -314,7 +309,8 @@ export default function CompactAnimatedPortfolio() {
                     transition={{ duration: 0.2 }}
                   >
                     <Button variant="outline">
-                      <Github className="mr-2 h-4 w-4" /> GitHub
+                      <Github className="sm:mr-2 mr-0 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">GitHub</p>
                     </Button>
                   </motion.div>
                 </div>
