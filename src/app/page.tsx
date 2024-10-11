@@ -190,26 +190,31 @@ export default function EnhancedLightModePortfolio() {
 
   const skills = {
     languages: [
-      { name: "JavaScript", Proficiency: 90, mobile: 85 },
-      { name: "TypeScript", Proficiency: 85, mobile: 80 },
-      { name: "Python", Proficiency: 80, mobile: 75 },
-      { name: "Java", Proficiency: 75, mobile: 70 },
-      { name: "C#", Proficiency: 95, mobile: 90 },
-      { name: "SQL", Proficiency: 85, mobile: 80 },
-      { name: "NoSQL", Proficiency: 80, mobile: 75 },
+      { name: "JavaScript", Proficiency: 9, mobile: 8.5 },
+      { name: "TypeScript", Proficiency: 8.5, mobile: 8 },
+      { name: "Python", Proficiency: 6.5, mobile: 7.5 },
+      { name: "Java", Proficiency: 9, mobile: 7 },
+      { name: "C#", Proficiency: 9.5, mobile: 9 },
+      { name: "SQL", Proficiency: 8.5, mobile: 8 },
+      { name: "NoSQL", Proficiency: 8.5, mobile: 7.5 },
     ],
     frameworks: [
-      { name: "React", Proficiency: 95, mobile: 90 },
-      { name: "Next.js", Proficiency: 90, mobile: 85 },
-      { name: "Node.js", Proficiency: 85, mobile: 80 },
-      { name: "Express", Proficiency: 80, mobile: 75 },
-      { name: "ASP.NET", Proficiency: 75, mobile: 70 },
-      { name: "Spring Boot", Proficiency: 70, mobile: 65 },
+      { name: "React", Proficiency: 9.5, mobile: 9 },
+      { name: "Next.js", Proficiency: 9, mobile: 8.5 },
+      { name: "Node.js", Proficiency: 8.5, mobile: 8 },
+      { name: "Express", Proficiency: 8, mobile: 7.5 },
+      { name: "ASP.NET", Proficiency: 7.5, mobile: 7 },
+      { name: "Spring Boot", Proficiency: 7, mobile: 6.5 },
+      { name: "Tailwind", Proficiency: 9, mobile: 8.5 },
     ],
     tools: [
-      { name: "Git", Proficiency: 90, mobile: 85 },
-      { name: "Docker", Proficiency: 85, mobile: 80 },
-      { name: "Azure", Proficiency: 70, mobile: 65 },
+      { name: "Git", Proficiency: 9, mobile: 8.5 },
+      { name: "Docker", Proficiency: 8.5, mobile: 8 },
+      { name: "Azure", Proficiency: 7, mobile: 6.5 },
+      { name: "Visual Studio", Proficiency: 7, mobile: 5 },
+      { name: "MongoDB", Proficiency: 8, mobile: 7.5 },
+      { name: "MySQL", Proficiency: 8.5, mobile: 8 },
+      { name: "Visual Studio Code", Proficiency: 9, mobile: 8.5 },
     ],
   };
 
@@ -608,7 +613,7 @@ export default function EnhancedLightModePortfolio() {
             <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className="bg-white  dark:bg-[#242526] sm:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
+            <Card className="bg-white  dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
               <CardContent className="pt-6">
                 <Tabs defaultValue="languages" className="w-full text-center ">
                   <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 ">
@@ -638,16 +643,11 @@ export default function EnhancedLightModePortfolio() {
                       value={category}
                     >
                       <div className="">
-                        <ChartContainer
-                          className="h-[50%]"
-                          config={chartConfig}
-                        >
+                        <ChartContainer className="" config={chartConfig}>
                           <BarChart
                             data={skills[category as keyof typeof skills]}
                             layout="vertical"
-                            margin={{
-                              right: 16,
-                            }}
+                            barCategoryGap="10%"
                           >
                             <CartesianGrid horizontal={false} />
                             <YAxis
@@ -659,16 +659,13 @@ export default function EnhancedLightModePortfolio() {
                               tickFormatter={(value) => value.slice(0, 3)}
                               hide
                             />
-                            <XAxis dataKey="Proficiency" type="number" hide />
-                            <Tooltip
-                              cursor={false}
-                              content={<ChartTooltipContent indicator="line" />}
-                            />
+                            <XAxis dataKey="Proficiency" type="number" domain={[0, 10]} hide />
+                            <Tooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
                             <Bar
                               dataKey="Proficiency"
                               layout="vertical"
                               className="fill-blue-600"
-                              radius={4}
+                              radius={10}
                             >
                               <LabelList
                                 dataKey="name"
@@ -869,7 +866,7 @@ export default function EnhancedLightModePortfolio() {
           <div className="container w-full flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
             <div className="flex flex-col justify-center w-full items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
               <p className="text-center text-sm leading-loose text-gray-600 dark:text-[#B0B3B8] md:text-left">
-                Built by James Casipong. The source code is available on GitHub.
+                Built by James Casipong with Next.js and Tailwind. © 2023
               </p>
             </div>
           </div>
