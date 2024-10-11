@@ -60,7 +60,7 @@ import {
 } from "./datas";
 
 export default function EnhancedLightModePortfolio() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
@@ -438,12 +438,12 @@ export default function EnhancedLightModePortfolio() {
                     </motion.div>
                   </DialogTrigger>
                   <DialogContent
-                    className={`sm:w-full w-[90%] rounded-lg max-w-3xl ${
+                    className={`sm:w-full w-[90%] rounded-lg max-w-7xl ${
                       darkMode ? "bg-[#3E4042] text-white border-0" : ""
                     } overflow-y-auto`}
                   >
                     <DialogHeader>
-                      <DialogTitle className="dark:text-blue-400 mb-1">
+                      <DialogTitle className=" mb-1">
                         {project.title}
                       </DialogTitle>
                       <div className="flex sm:justify-start justify-center mt-2 gap-4 text-xs">
@@ -451,7 +451,9 @@ export default function EnhancedLightModePortfolio() {
                           href={project.source}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 dark:text-[#2374E1] hover:underline"
+                          className={`${
+                            darkMode ? "text-blue-400" : "text-blue-600"
+                          } hover:underline`}
                         >
                           <Github className="inline-block mr-1 h-4 w-4" />{" "}
                           GitHub
@@ -460,7 +462,9 @@ export default function EnhancedLightModePortfolio() {
                           href={project.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 dark:text-[#2374E1] hover:underline mb-2"
+                          className={`${
+                            darkMode ? "text-blue-400" : "text-blue-600"
+                          } dark:text-[#2374E1] hover:underline mb-2`}
                         >
                           <Globe className="inline-block mr-1 h-4 w-4" />{" "}
                           {index == 0 ? "Download" : "Website"}

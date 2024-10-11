@@ -37,6 +37,7 @@ export function CarouselApi({ images }: { images: string[] }) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [isThrottled, setIsThrottled] = React.useState(false); // Throttle flag
 
   React.useEffect(() => {
     if (!api) {
@@ -52,7 +53,6 @@ export function CarouselApi({ images }: { images: string[] }) {
 
     api.on("select", handleSelect);
 
-    // Cleanup function to remove event listener
     return () => {
       api.off("select", handleSelect);
     };
@@ -66,6 +66,11 @@ export function CarouselApi({ images }: { images: string[] }) {
 
   const handleWheel = (event: WheelEvent) => {
     event.preventDefault(); // Prevent default scrolling behavior
+
+    if (isThrottled) return; // Ignore if throttled
+
+    setIsThrottled(true);
+
     if (event.deltaY > 0) {
       // Scroll down -> next item
       if (current < count) {
@@ -77,21 +82,24 @@ export function CarouselApi({ images }: { images: string[] }) {
         scrollTo(current - 2); // Scroll to the previous item
       }
     }
+
+    // Set a timeout to reset the throttle
+    setTimeout(() => {
+      setIsThrottled(false);
+    }, 300); // Adjust this value (in ms) as needed
   };
 
   React.useEffect(() => {
     const carouselElement = document.querySelector(
       ".carousel-container"
-    ) as HTMLElement; // Type assertion
+    ) as HTMLElement;
 
     if (carouselElement) {
-      // Use type assertion for the listener
       carouselElement.addEventListener("wheel", handleWheel as EventListener, {
         passive: false,
       });
     }
 
-    // Cleanup event listener on unmount
     return () => {
       if (carouselElement) {
         carouselElement.removeEventListener(
@@ -100,12 +108,12 @@ export function CarouselApi({ images }: { images: string[] }) {
         );
       }
     };
-  }, [current, count]);
+  }, [current, count, isThrottled]);
 
   return (
     <div className="carousel-container overflow-hidden w-full">
       <div className="flex w-full">
-        <p className="rounded-full px-4 py-0 mb-2 mx-auto dark:bg-blue-600 bg-black text-white inline-block">
+        <p className="rounded-full sm:px-4 px-3 py-0 mb-2 mx-auto sm:text-[15px] text-[11px]  dark:bg-blue-600 bg-black text-white inline-block">
           {current} / {count}
         </p>
       </div>
@@ -114,11 +122,7 @@ export function CarouselApi({ images }: { images: string[] }) {
         <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem key={index}>
-              <img
-                className="border-[1px]  rounded-lg shadow-lg"
-                src={image}
-                alt=""
-              />
+              <img className="border rounded-lg shadow-lg" src={image} alt="" />
             </CarouselItem>
           ))}
         </CarouselContent>

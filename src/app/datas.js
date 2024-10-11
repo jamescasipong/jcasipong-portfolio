@@ -5,11 +5,13 @@ const projects = [
       "A Filipino 2D RPG game developed using Unity, inspired by the novel Noli Me Tangere. Dive into a rich, narrative-driven adventure where you complete quests and interact with intriguing characters.",
     images: [
       "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot1.jpg",
-      "",
+      "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot2.jpg",
+      "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot3.jpg",
+      "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot4.jpg",
     ], // Update with actual images if available
     source: "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG",
     website: "https://example.com/touch-me-not-2d-rpg", // Update with actual website if available
-    stack: ["Unity", "C#"],
+    stack: ["Unity", "C#", "Ink Scripting", "LibreSprite"],
   },
   {
     title: "HRConnect",
@@ -44,7 +46,13 @@ const projects = [
     source: "https://github.com/jamescasipong/hr-management-system/",
     description:
       "A website for managing Internet Service Provider (ISP) services. It is designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
-    images: ["/optinet.png"], // Update with actual images if available
+    images: [
+      "/optinet.png",
+      "/optinet-1.png",
+      "/optinet-2.png",
+      "/optinet-3.png",
+      "/optinet-4.png",
+    ], // Update with actual images if available
     stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
   },
   {
