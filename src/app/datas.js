@@ -190,4 +190,3 @@ const education = [
 ];
 
 export { blogPosts, chartConfig, education, experiences, projects, skills };
-
