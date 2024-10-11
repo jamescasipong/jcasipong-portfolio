@@ -621,7 +621,7 @@ export default function EnhancedLightModePortfolio() {
                             </div>
                           ))}
                         </div>
-                        <div className="h-[300px]">
+                        <div className="sm:block hidden h-[300px]">
                           <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={items}>
                               <XAxis dataKey="name" />
