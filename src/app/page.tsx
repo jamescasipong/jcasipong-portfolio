@@ -802,9 +802,9 @@ export default function EnhancedLightModePortfolio() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-gray-200 dark:border-[#3E4042] py-6 md:py-0">
-          <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-            <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <footer className="border-t flex justify-center border-gray-200 dark:border-[#3E4042] py-6 md:py-0">
+          <div className="container w-full flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+            <div className="flex flex-col justify-center w-full items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
               <p className="text-center text-sm leading-loose text-gray-600 dark:text-[#B0B3B8] md:text-left">
                 Built by James Casipong. The source code is available on GitHub.
               </p>
