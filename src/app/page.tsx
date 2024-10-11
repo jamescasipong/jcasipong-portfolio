@@ -35,6 +35,7 @@ import {
   Github,
   Globe,
   Linkedin,
+  FileUser,
   Mail,
   Moon,
   Sun,
@@ -321,6 +322,21 @@ export default function EnhancedLightModePortfolio() {
                     >
                       <Linkedin className="sm:mr-2 h-4 w-4" />{" "}
                       <p className="sm:block hidden">Linkedin</p>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        window.open("/JamesCasipong_Portfolio.pdf", "_blank");
+                      }}
+                      variant="outline"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                    >
+                      <FileUser className="sm:mr-2 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">Resume</p>
                     </Button>
                   </motion.div>
                   <motion.div
