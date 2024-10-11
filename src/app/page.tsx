@@ -10,10 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltipContent
-} from "@/components/ui/chart";
+import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 import {
   Dialog,
   DialogContent,
@@ -28,6 +25,7 @@ import {
   ChevronDown,
   Code,
   Github,
+  Globe,
   Linkedin,
   Mail,
   Moon,
@@ -44,10 +42,17 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { blogPosts, chartConfig, education, experiences, projects, skills } from "./datas";
+import {
+  blogPosts,
+  chartConfig,
+  education,
+  experiences,
+  projects,
+  skills,
+} from "./datas";
 
 export default function EnhancedLightModePortfolio() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
@@ -117,8 +122,6 @@ export default function EnhancedLightModePortfolio() {
     }
     setMenuOpen(false);
   };
-
-  
 
   return (
     <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
@@ -380,7 +383,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white shadow-lg h-full relative dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {project.title}
@@ -396,32 +399,61 @@ export default function EnhancedLightModePortfolio() {
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="">
                       <Dialog>
-                        <DialogTrigger asChild>
-                          <Button className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
+                        <DialogTrigger
+                          className="left-[37%] bottom-[3%] absolute"
+                          asChild
+                        >
+                          <Button className="bg-blue-600  text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
                             View Project
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className={`max-w-3xl w-full ${
+                        <DialogContent
+                          className={`max-w-3xl w-full ${
                             darkMode ? "bg-[#3E4042] text-white border-0" : ""
-                          } overflow-y-auto`}>
+                          } overflow-y-auto`}
+                        >
                           <DialogHeader className="">
-                            <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
+                            <DialogTitle className="dark:text-blue-400">
                               {project.title}
                             </DialogTitle>
-                            <DialogDescription className={`${
-                                darkMode ? "bg-[#3E4042] text-blue-300" : ""
-                              }`}>
+                            <div className="flex justify-start mt-2 gap-4 text-xs">
+                              <a
+                              href={project.source}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 dark:text-[#2374E1] hover:underline"
+                              >
+                              <Github className="inline-block mr-1 h-4 w-4" />{" "}
+                              GitHub
+                              </a>
+                              <a
+                              href={project.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 dark:text-[#2374E1] hover:underline"
+                              >
+                              <Globe className="inline-block mr-1 h-4 w-4" />{" "}
+                              Website
+                              </a>
+                            </div>
+                            <DialogDescription
+                              className={`${
+                                darkMode ? "bg-[#3E4042] text-white" : ""
+                              }`}
+                            >
                               {project.description}
                             </DialogDescription>
-                            <p className={`${
+                            <p
+                              className={`${
                                 darkMode ? "bg-[#3E4042] text-[#B0B3B8]" : ""
-                              }`}>
+                              }`}
+                            >
                               {project.details}
                             </p>
                           </DialogHeader>
-                          <div className="mt-2">
+                          <div className="mt-2 my-auto">
                             <div>
                               <img
                                 src={project.image}
@@ -497,8 +529,16 @@ export default function EnhancedLightModePortfolio() {
                               tickFormatter={(value) => value.slice(0, 3)}
                               hide
                             />
-                            <XAxis dataKey="Proficiency" type="number" domain={[0, 10]} hide />
-                            <Tooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                            <XAxis
+                              dataKey="Proficiency"
+                              type="number"
+                              domain={[0, 10]}
+                              hide
+                            />
+                            <Tooltip
+                              cursor={false}
+                              content={<ChartTooltipContent indicator="line" />}
+                            />
                             <Bar
                               dataKey="Proficiency"
                               layout="vertical"
@@ -621,7 +661,7 @@ export default function EnhancedLightModePortfolio() {
           {/* Blog Section */}
           <motion.section
             id="blog"
-            className="py-16 " 
+            className="py-16 "
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}

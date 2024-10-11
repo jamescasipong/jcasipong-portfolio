@@ -8,6 +8,8 @@ const projects = [
       "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot1.jpg", // Update with actual image if available
     details:
       "Dive into a rich, narrative-driven adventure where you complete quests and interact with intriguing characters.",
+    source: "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG",
+    website: "https://example.com/touch-me-not-2d-rpg", // Update with actual website if available
   },
   {
     title: "HRConnect",
@@ -16,6 +18,8 @@ const projects = [
     image: "/hrconnect.png", // Update with actual image if available
     details:
       "HRConnect simplifies employee management with features like payroll tracking, performance reviews, leave requests, and attendance monitoring.",
+    source: "https://github.com/jamescasipong/hr-management-system",
+    website: "https://hrconnect.vercel.app/",
   },
   {
     title: "Task Tracker",
@@ -24,6 +28,8 @@ const projects = [
     image: "/monitor-task.png", // Update with actual image if available
     details:
       "Allows users to convert Excel files to JSON, view and edit data, and update the database.",
+    source: "https://github.com/jamescasipong/task-tracker",
+    website: "https://monitoring-task.vercel.app/", // Update with actual website if available
   },
   {
     title: "React Bank Websites",
@@ -31,9 +37,13 @@ const projects = [
     image: "/react-bank.png", // Update with actual image if available
     details:
       "Includes banking functionalities like account management, transaction history, and secure login.",
+    source: "https://github.com/jamescasipong/react-bank-websites",
+    website: "https://react-bank-websites.vercel.app/", // Update with actual website if available
   },
   {
     title: "ISP Services",
+    website: "https://hrconnect.vercel.app/",
+    source: "https://github.com/jamescasipong/hr-management-system/",
     description:
       "A website for managing Internet Service Provider (ISP) services.",
     image: "/optinet.png", // Update with actual image if available
@@ -47,6 +57,8 @@ const projects = [
     image: "/portfolio.png", // Update with actual image if available
     details:
       "This temporary portfolio highlights personal achievements and serves as a resume.",
+    source: "https://github.com/jamescasipong/sample-portfolio",
+    website: "https://jcasipong-dev.vercel.app/", // Update with actual website if available
   },
 ];
 
