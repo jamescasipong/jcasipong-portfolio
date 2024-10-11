@@ -19,7 +19,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -234,7 +239,7 @@ export default function EnhancedLightModePortfolio() {
         </AnimatePresence>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 sm:pt-16 pt-20">
+        <main className="container mx-auto px-4 sm:pt-16 pt-18">
           {/* Home Section */}
           <motion.section
             id="home"
@@ -306,7 +311,8 @@ export default function EnhancedLightModePortfolio() {
                     <Button
                       onClick={() => {
                         window.open(
-                          "https://www.linkedin.com/in/jamescasipong/, _blank");
+                          "https://www.linkedin.com/in/jamescasipong/, _blank"
+                        );
                       }}
                       variant="outline"
                       className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
@@ -318,12 +324,13 @@ export default function EnhancedLightModePortfolio() {
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
-                  > 
+                  >
                     <Button
                       onClick={() => {
-                        window.open("https://github.com/jamescasipong", "_blank"); 
-                          
-                        
+                        window.open(
+                          "https://github.com/jamescasipong",
+                          "_blank"
+                        );
                       }}
                       variant="outline"
                       className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
@@ -379,97 +386,79 @@ export default function EnhancedLightModePortfolio() {
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="bg-white shadow-lg h-full relative dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
-                    <CardHeader>
-                      <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Card className="bg-white shadow-lg h-full relative dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
+                        <CardHeader>
+                          <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                            {project.title}
+                          </CardTitle>
+                          <CardDescription className="dark:text-[#B0B3B8]">
+                            {project.description}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-48 object-cover rounded-md mb-4"
+                          />
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </DialogTrigger>
+                  <DialogContent
+                    className={`sm:w-full w-[90%] rounded-lg max-w-3xl ${
+                      darkMode ? "bg-[#3E4042] text-white border-0" : ""
+                    } overflow-y-auto`}
+                  >
+                    <DialogHeader>
+                      <DialogTitle className="dark:text-blue-400 mb-1">
                         {project.title}
-                      </CardTitle>
-                      <CardDescription className="dark:text-[#B0B3B8]">
+                      </DialogTitle>
+                      <div className="flex sm:justify-start justify-center mt-2 gap-4 text-xs">
+                        <a
+                          href={project.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 dark:text-[#2374E1] hover:underline"
+                        >
+                          <Github className="inline-block mr-1 h-4 w-4" />{" "}
+                          GitHub
+                        </a>
+                        <a
+                          href={project.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 dark:text-[#2374E1] hover:underline mb-2"
+                        >
+                          <Globe className="inline-block mr-1 h-4 w-4" />{" "}
+                          {index == 0 ? "Download" : "Website"}
+                        </a>
+                      </div>
+                      <DialogDescription
+                        className={`sm:text-[14px] text-[12px] text-justify ${
+                          darkMode ? "bg-[#3E4042] text-white" : ""
+                        }`}
+                      >
                         {project.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div>
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-48 object-cover rounded-md mb-4"
+                        className="w-[100%] h-[100%] rounded-lg border shadow-md"
                       />
-                    </CardContent>
-                    <CardFooter className="">
-                      <Dialog>
-                        <DialogTrigger
-                          className="left-[37%] bottom-[3%] absolute"
-                          asChild
-                        >
-                          <Button className="bg-blue-600  text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
-                            View Project
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent
-                          className={`sm:w-full w-[90%] rounded-lg max-w-3xl  ${
-                            darkMode ? "bg-[#3E4042] text-white border-0" : ""
-                          } overflow-y-auto`}
-                        >
-                          <DialogHeader className="">
-                            <DialogTitle className="dark:text-blue-400">
-                              {project.title}
-                            </DialogTitle>
-                            <div className="flex justify-start mt-2 gap-4 text-xs">
-                              <a
-                                href={project.source}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 dark:text-[#2374E1] hover:underline"
-                              >
-                                <Github className="inline-block  mr-1 h-4 w-4" />{" "}
-                                GitHub
-                              </a>
-                              <a
-                                href={project.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 dark:text-[#2374E1] hover:underline mb-2"
-                              >
-                                <Globe className="inline-block mr-1 h-4 w-4" />{" "}
-                                {index == 0 ? "Download" : "Website"}
-                              </a>
-                            </div>
-                            <DialogDescription
-                              className={`${
-                                darkMode ? "bg-[#3E4042] text-white" : ""
-                              }`}
-                            >
-                              {project.description}
-                            </DialogDescription>
-                            <p
-                              className={`${
-                                darkMode ? "bg-[#3E4042] text-[#B0B3B8]" : ""
-                              }`}
-                            >
-                              {project.details}
-                            </p>
-                          </DialogHeader>
-                          <div className="mt-2 my-auto">
-                            <div>
-                              <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-[100%] h-[100%] rounded-lg border"
-                              />
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               ))}
             </div>
           </motion.section>
@@ -594,7 +583,7 @@ export default function EnhancedLightModePortfolio() {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.3 }}
                   >
                     <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
@@ -661,107 +650,107 @@ export default function EnhancedLightModePortfolio() {
           </motion.section>
 
           {/* Blog Section */}
-            <motion.section
-              id="blog"
-              className="py-16 "
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
+          <motion.section
+            id="blog"
+            className="py-16 "
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
               Latest Blog Posts
-              </h2>
-              <div className="flex justify-start mb-3">
+            </h2>
+            <div className="flex justify-start mb-3">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button className="bg-white border rounded-lg border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white mx-2 p-2 ">
-                  Sort by: {sortOrder === "latest" ? "Latest" : "Oldest"}
-                </Button>
+                  <Button className="bg-white border rounded-lg border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white mx-2 p-2 ">
+                    Sort by: {sortOrder === "latest" ? "Latest" : "Oldest"}
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setSortOrder("latest")}>
-                  Latest
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setSortOrder("oldest")}>
-                  Oldest
-                </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSortOrder("latest")}>
+                    Latest
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSortOrder("oldest")}>
+                    Oldest
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {blogPosts
                 .sort((a, b) =>
-                sortOrder === "latest"
-                  ? new Date(b.date).getTime() - new Date(a.date).getTime()
-                  : new Date(a.date).getTime() - new Date(b.date).getTime()
+                  sortOrder === "latest"
+                    ? new Date(b.date).getTime() - new Date(a.date).getTime()
+                    : new Date(a.date).getTime() - new Date(b.date).getTime()
                 )
                 .map((post, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
-                  <CardHeader>
-                    <CardTitle className="text-blue-600 dark:text-[#2374E1]">
-                    {post.title}
-                    </CardTitle>
-                    <CardDescription className="dark:text-[#B0B3B8]">
-                    Posted on {post.date}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8]">
-                    {post.excerpt}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Dialog>
-                    <DialogTrigger asChild>
-                      <Button
-                      variant="outline"
-                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
-                      >
-                      Read More
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent
-                      className={`max-w-3xl sm:w-full w-[90%] rounded-lg ${
-                      darkMode ? "bg-[#3E4042] border-0 text-white" : ""
-                      }`}
-                    >
-                      <DialogHeader>
-                      <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
-                        {post.title}
-                      </DialogTitle>
-                      <DialogDescription
-                        className={`${
-                        darkMode ? "bg-[#3E4042] text-[#fafcff]" : ""
-                        }`}
-                      >
-                        Posted on {post.date}
-                      </DialogDescription>
-                      </DialogHeader>
-                      <div className="mt-4 ">
-                      <p
-                        className={`sm:text-[16px] text-[13px] ${
-                        darkMode ? "bg-[#3E4042] text-white" : ""
-                        } `}
-                      >
-                        {post.content}
-                      </p>
-                      </div>
-                    </DialogContent>
-                    </Dialog>
-                  </CardFooter>
-                  </Card>
-                </motion.div>
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                      <CardHeader>
+                        <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                          {post.title}
+                        </CardTitle>
+                        <CardDescription className="dark:text-[#B0B3B8]">
+                          Posted on {post.date}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8]">
+                          {post.excerpt}
+                        </p>
+                      </CardContent>
+                      <CardFooter>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                            >
+                              Read More
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent
+                            className={`max-w-3xl sm:w-full w-[90%] rounded-lg ${
+                              darkMode ? "bg-[#3E4042] border-0 text-white" : ""
+                            }`}
+                          >
+                            <DialogHeader>
+                              <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
+                                {post.title}
+                              </DialogTitle>
+                              <DialogDescription
+                                className={`${
+                                  darkMode ? "bg-[#3E4042] text-[#fafcff]" : ""
+                                }`}
+                              >
+                                Posted on {post.date}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="mt-4 ">
+                              <p
+                                className={`sm:text-[16px] text-[13px] ${
+                                  darkMode ? "bg-[#3E4042] text-white" : ""
+                                } `}
+                              >
+                                {post.content}
+                              </p>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
-            </motion.section>
+            </div>
+          </motion.section>
         </main>
 
         {/* Footer */}

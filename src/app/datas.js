@@ -1,42 +1,34 @@
-
 const projects = [
   {
     title: "Touch-Me-Not 2D RPG",
     description:
-      "A Filipino 2D RPG game developed using Unity, inspired by the novel Noli Me Tangere.",
+      "A Filipino 2D RPG game developed using Unity, inspired by the novel Noli Me Tangere. Dive into a rich, narrative-driven adventure where you complete quests and interact with intriguing characters.",
     image:
       "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot1.jpg", // Update with actual image if available
-    details:
-      "Dive into a rich, narrative-driven adventure where you complete quests and interact with intriguing characters.",
     source: "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG",
     website: "https://example.com/touch-me-not-2d-rpg", // Update with actual website if available
   },
   {
     title: "HRConnect",
     description:
-      "A website for employees to clock in/out, check payroll, attendances, performances, and file leaves.",
+      "A website for employees to clock in/out, check payroll, attendances, performances, and file leaves. HRConnect simplifies employee management with features like payroll tracking, performance reviews, leave requests, and attendance monitoring.",
     image: "/hrconnect.png", // Update with actual image if available
-    details:
-      "HRConnect simplifies employee management with features like payroll tracking, performance reviews, leave requests, and attendance monitoring.",
     source: "https://github.com/jamescasipong/hr-management-system",
     website: "https://hrconnect.vercel.app/",
   },
   {
     title: "Task Tracker",
     description:
-      "A web application built with the MERN stack for managing employee data.",
+      "A web application built with the MERN stack for managing employee data. It allows users to convert Excel files to JSON, view and edit data, and update the database.",
     image: "/monitor-task.png", // Update with actual image if available
-    details:
-      "Allows users to convert Excel files to JSON, view and edit data, and update the database.",
     source: "https://github.com/jamescasipong/task-tracker",
     website: "https://monitoring-task.vercel.app/", // Update with actual website if available
   },
   {
     title: "React Bank Websites",
-    description: "A modern banking platform built using React.",
+    description:
+      "A modern banking platform built using React. It includes banking functionalities like account management, transaction history, and secure login.",
     image: "/react-bank.png", // Update with actual image if available
-    details:
-      "Includes banking functionalities like account management, transaction history, and secure login.",
     source: "https://github.com/jamescasipong/react-bank-websites",
     website: "https://react-bank-websites.vercel.app/", // Update with actual website if available
   },
@@ -45,18 +37,14 @@ const projects = [
     website: "https://hrconnect.vercel.app/",
     source: "https://github.com/jamescasipong/hr-management-system/",
     description:
-      "A website for managing Internet Service Provider (ISP) services.",
+      "A website for managing Internet Service Provider (ISP) services. It is designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
     image: "/optinet.png", // Update with actual image if available
-    details:
-      "Designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
   },
   {
     title: "Sample Portfolio",
     description:
-      "A portfolio showcasing educational background, experiences, skills, and projects built with VanillaJS.",
+      "A portfolio showcasing educational background, experiences, skills, and projects built with VanillaJS. This temporary portfolio highlights personal achievements and serves as a resume.",
     image: "/portfolio.png", // Update with actual image if available
-    details:
-      "This temporary portfolio highlights personal achievements and serves as a resume.",
     source: "https://github.com/jamescasipong/sample-portfolio",
     website: "https://jcasipong-dev.vercel.app/", // Update with actual website if available
   },
@@ -131,7 +119,7 @@ const chartConfig = {
   label: {
     color: "hsl(var(--background))",
   },
-}
+};
 
 const experiences = [
   {
@@ -190,4 +178,3 @@ const education = [
 ];
 
 export { blogPosts, chartConfig, education, experiences, projects, skills };
-
