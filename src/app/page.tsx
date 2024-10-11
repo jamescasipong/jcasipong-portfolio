@@ -60,8 +60,8 @@ export default function EnhancedLightModePortfolio() {
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark");
+    setDarkMode((prev: boolean) => !prev);
+
   };
 
   useEffect(() => {
