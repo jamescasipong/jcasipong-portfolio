@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
+import { CarouselApi } from "@/components/ui/customBuiltUIs";
 import {
   Dialog,
   DialogContent,
@@ -25,6 +26,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -58,7 +60,7 @@ import {
 } from "./datas";
 
 export default function EnhancedLightModePortfolio() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
@@ -298,7 +300,7 @@ export default function EnhancedLightModePortfolio() {
                           "mailto:jamesxcasipong@gmail.com";
                       }}
                       variant="outline"
-                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
                     >
                       <Mail className="sm:mr-2 h-4 w-4" />{" "}
                       <p className="sm:block hidden">Email</p>
@@ -315,7 +317,7 @@ export default function EnhancedLightModePortfolio() {
                         );
                       }}
                       variant="outline"
-                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
                     >
                       <Linkedin className="sm:mr-2 h-4 w-4" />{" "}
                       <p className="sm:block hidden">Linkedin</p>
@@ -333,7 +335,7 @@ export default function EnhancedLightModePortfolio() {
                         );
                       }}
                       variant="outline"
-                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
                     >
                       <Github className="sm:mr-2 h-4 w-4" />{" "}
                       <p className="sm:block hidden">GitHub</p>
@@ -365,10 +367,10 @@ export default function EnhancedLightModePortfolio() {
             </h2>
             <p className="sm:text-lg text-sm text-gray-600  dark:text-[#B0B3B8] text-justify md:text-center mx-auto md:w-[70%] w-full">
               I'm a passionate full-stack developer and software engineer with a
-              keen interest in building scalable web applications and
-              contributing to open-source projects. With a strong foundation in
-              computer science and years of hands-on experience, I strive to
-              create efficient, user-friendly solutions to complex problems.
+              keen interest in building scalable applications and contributing
+              to open-source projects. With a strong foundation in computer
+              science and years of hands-on experience, I strive to create
+              efficient, user-friendly solutions to complex problems.
             </p>
           </motion.section>
 
@@ -399,13 +401,35 @@ export default function EnhancedLightModePortfolio() {
                           <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                             {project.title}
                           </CardTitle>
+
+                          <div className="flex flex-wrap gap-2">
+                            {project.stack.map((lang, index) => (
+                              <motion.div
+                                key={lang}
+                                whileHover={{ scale: 1.1 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                  duration: 0.5,
+                                  delay: index * 0.1,
+                                }}
+                              >
+                                <Badge
+                                  className="border-gray-200 border dark:border-gray-700 dark:bg-gray-700"
+                                  variant="secondary"
+                                >
+                                  {lang}
+                                </Badge>
+                              </motion.div>
+                            ))}
+                          </div>
                           <CardDescription className="dark:text-[#B0B3B8]">
                             {project.description}
                           </CardDescription>
                         </CardHeader>
                         <CardContent>
                           <img
-                            src={project.image}
+                            src={project.images[0]}
                             alt={project.title}
                             className="w-full h-48 object-cover rounded-md mb-4"
                           />
@@ -450,13 +474,7 @@ export default function EnhancedLightModePortfolio() {
                         {project.description}
                       </DialogDescription>
                     </DialogHeader>
-                    <div>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-[100%] h-[100%] rounded-lg border shadow-md"
-                      />
-                    </div>
+                    <CarouselApi images={project.images} />
                   </DialogContent>
                 </Dialog>
               ))}
@@ -664,7 +682,7 @@ export default function EnhancedLightModePortfolio() {
             <div className="flex justify-start mb-3">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="bg-white border rounded-lg border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white mx-2 p-2 ">
+                  <Button className="bg-white border rounded-lg border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042]  dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white mx-2 p-2 ">
                     Sort by: {sortOrder === "latest" ? "Latest" : "Oldest"}
                   </Button>
                 </DropdownMenuTrigger>
@@ -712,7 +730,7 @@ export default function EnhancedLightModePortfolio() {
                           <DialogTrigger asChild>
                             <Button
                               variant="outline"
-                              className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                              className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042]  dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
                             >
                               Read More
                             </Button>
