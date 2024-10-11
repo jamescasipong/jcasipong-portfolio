@@ -10,11 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 import {
   Dialog,
   DialogContent,
@@ -29,6 +25,7 @@ import {
   ChevronDown,
   Code,
   Github,
+  Globe,
   Linkedin,
   Mail,
   Moon,
@@ -45,9 +42,17 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import {
+  blogPosts,
+  chartConfig,
+  education,
+  experiences,
+  projects,
+  skills,
+} from "./datas";
 
 export default function EnhancedLightModePortfolio() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
@@ -117,184 +122,6 @@ export default function EnhancedLightModePortfolio() {
     }
     setMenuOpen(false);
   };
-
-  const projects = [
-    {
-      title: "Touch-Me-Not 2D RPG",
-      description:
-        "A Filipino 2D RPG game developed using Unity, inspired by the novel Noli Me Tangere.",
-      image:
-        "https://github.com/jamescasipong/Touch-Me-Not-2D-RPG/raw/main/Screenshot1.jpg", // Update with actual image if available
-      details:
-        "Dive into a rich, narrative-driven adventure where you complete quests and interact with intriguing characters.",
-    },
-    {
-      title: "HRConnect",
-      description:
-        "A website for employees to clock in/out, check payroll, attendances, performances, and file leaves.",
-      image: "/hrconnect.png", // Update with actual image if available
-      details:
-        "HRConnect simplifies employee management with features like payroll tracking, performance reviews, leave requests, and attendance monitoring.",
-    },
-    {
-      title: "Task Tracker",
-      description:
-        "A web application built with the MERN stack for managing employee data.",
-      image: "/monitor-task.png", // Update with actual image if available
-      details:
-        "Allows users to convert Excel files to JSON, view and edit data, and update the database.",
-    },
-    {
-      title: "React Bank Websites",
-      description: "A modern banking platform built using React.",
-      image: "/react-bank.png", // Update with actual image if available
-      details:
-        "Includes banking functionalities like account management, transaction history, and secure login.",
-    },
-    {
-      title: "ISP Services",
-      description:
-        "A website for managing Internet Service Provider (ISP) services.",
-      image: "/optinet.png", // Update with actual image if available
-      details:
-        "Designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
-    },
-    {
-      title: "Sample Portfolio",
-      description:
-        "A portfolio showcasing educational background, experiences, skills, and projects built with VanillaJS.",
-      image: "/portfolio.png", // Update with actual image if available
-      details:
-        "This temporary portfolio highlights personal achievements and serves as a resume.",
-    },
-  ];
-
-  const blogPosts = [
-    {
-      title: "The Future of Web Development",
-      date: "May 1, 2023",
-      excerpt:
-        "Exploring upcoming trends in web development and how they'll shape the industry...",
-      content:
-        "In this post, we dive deep into emerging technologies like WebAssembly, Edge Computing, and AI-driven development. We'll explore how these innovations are set to revolutionize the way we build and interact with web applications...",
-    },
-    {
-      title: "Mastering React Hooks",
-      date: "May 15, 2023",
-      excerpt:
-        "A comprehensive guide to using React Hooks effectively in your projects...",
-      content:
-        "React Hooks have transformed the way we write React components. This article provides an in-depth look at useState, useEffect, useContext, and custom hooks. We'll cover best practices, common pitfalls, and advanced techniques...",
-    },
-    {
-      title: "Building Scalable Backend Systems",
-      date: "June 1, 2023",
-      excerpt:
-        "Learn how to design and implement backend systems that can handle millions of users...",
-      content:
-        "Scalability is crucial for modern web applications. In this post, we'll explore architectural patterns like microservices, database sharding, and caching strategies. We'll also discuss how to use cloud services effectively to ensure your backend can grow with your user base...",
-    },
-  ];
-
-  const skills = {
-    languages: [
-      { name: "JavaScript", Proficiency: 7, mobile: 6.5 },
-      { name: "TypeScript", Proficiency: 6.5, mobile: 6 },
-      { name: "Python", Proficiency: 5.5, mobile: 5 },
-      { name: "Java", Proficiency: 6, mobile: 5.5 },
-      { name: "C#", Proficiency: 6.5, mobile: 6 },
-      { name: "SQL", Proficiency: 6, mobile: 5.5 },
-      { name: "NoSQL", Proficiency: 5.5, mobile: 5 },
-    ],
-    frameworks: [
-      { name: "React", Proficiency: 7, mobile: 6.5 },
-      { name: "Next.js", Proficiency: 6.5, mobile: 6 },
-      { name: "Node.js", Proficiency: 6, mobile: 5.5 },
-      { name: "Express", Proficiency: 5.5, mobile: 5 },
-      { name: "ASP.NET", Proficiency: 5, mobile: 4.5 },
-      { name: "Spring Boot", Proficiency: 5, mobile: 4.5 },
-      { name: "Tailwind", Proficiency: 6.5, mobile: 6 },
-    ],
-    tools: [
-      { name: "Git", Proficiency: 7, mobile: 6.5 },
-      { name: "Docker", Proficiency: 6, mobile: 5.5 },
-      { name: "Azure", Proficiency: 5, mobile: 4.5 },
-      { name: "Visual Studio", Proficiency: 5, mobile: 4.5 },
-      { name: "MongoDB", Proficiency: 6, mobile: 5.5 },
-      { name: "MySQL", Proficiency: 6.5, mobile: 6 },
-      { name: "Visual Studio Code", Proficiency: 7, mobile: 6.5 },
-    ],
-  };
-
-  const chartConfig = {
-    Proficiency: {
-      label: "Proficiency",
-      color: "hsl(var(--chart-1))",
-    },
-    mobile: {
-      label: "Mobile",
-      color: "hsl(var(--chart-2))",
-    },
-    label: {
-      color: "hsl(var(--background))",
-    },
-  } satisfies ChartConfig;
-
-  const experiences = [
-    {
-      title: "Web Developer - Internship",
-      company: "SYSU International",
-      period: "March 2024 - June 2024",
-      responsibilities: [
-        "Developed web applications using PHP and Bootstrap",
-        "Collaborated with the team to enhance user interfaces",
-        "Improved website functionality",
-      ],
-    },
-    {
-      title: "Customer Service Representative",
-      company: "Concentrix",
-      period: "August 2022 - June 2024",
-      responsibilities: [
-        "Provided exceptional customer support through various channels",
-        "Resolved customer inquiries and issues in a timely manner",
-        "Maintained accurate records of interactions",
-      ],
-    },
-    {
-      title: "IT Admin & System Developer",
-      company: "Army Navy Burger",
-      period: "August 2024 - Present",
-      responsibilities: [
-        "Developing and maintaining web applications using Azure, React, Next.js, Tailwind, MongoDB, Laravel, and MySQL",
-        "Managing system administration tasks",
-        "Ensuring optimal performance of IT infrastructure",
-      ],
-    },
-  ];
-
-  const education = [
-    {
-      degree: "Information Communication and Technology",
-      institution: "STI College",
-      period: "2018 - 2020",
-      details: [
-        "Specialized in Software Development",
-        "Acquired skills in web development and database management",
-        "Expertise in HTML, CSS, JavaScript, PHP, Java, and MySQL",
-      ],
-    },
-    {
-      degree: "Bachelor of Science in Information Technology",
-      institution: "STI College",
-      period: "2020-2024",
-      details: [
-        "Expertise in C# and Java",
-        "Capstone Project: 'Developing a 2D RPG Game using Unity'",
-        "GWA: 1.5",
-      ],
-    },
-  ];
 
   return (
     <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
@@ -556,7 +383,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white shadow-lg h-full relative dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {project.title}
@@ -572,26 +399,61 @@ export default function EnhancedLightModePortfolio() {
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="">
                       <Dialog>
-                        <DialogTrigger asChild>
-                          <Button className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
+                        <DialogTrigger
+                          className="left-[37%] bottom-[3%] absolute"
+                          asChild
+                        >
+                          <Button className="bg-blue-600  text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
                             View Project
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="bg-white w-full max-w-[80%] h-[80%] dark:bg-[#242526] overflow-y-auto">
+                        <DialogContent
+                          className={`max-w-3xl w-full ${
+                            darkMode ? "bg-[#3E4042] text-white border-0" : ""
+                          } overflow-y-auto`}
+                        >
                           <DialogHeader className="">
-                            <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
+                            <DialogTitle className="dark:text-blue-400">
                               {project.title}
                             </DialogTitle>
-                            <DialogDescription className="dark:text-[#B0B3B8]">
+                            <div className="flex justify-start mt-2 gap-4 text-xs">
+                              <a
+                                href={project.source}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 dark:text-[#2374E1] hover:underline"
+                              >
+                                <Github className="inline-block mr-1 h-4 w-4" />{" "}
+                                GitHub
+                              </a>
+                              <a
+                                href={project.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 dark:text-[#2374E1] hover:underline mb-2"
+                              >
+                                <Globe className="inline-block mr-1 h-4 w-4" />{" "}
+                                {index == 0 ? "Download" : "Website"}
+                              </a>
+                            </div>
+                            <DialogDescription
+                              className={`${
+                                darkMode ? "bg-[#3E4042] text-white" : ""
+                              }`}
+                            >
                               {project.description}
                             </DialogDescription>
-                            <p className="text-gray-600 dark:text-[#B0B3B8] text-center ">
+                            <p
+                              className={`${
+                                darkMode ? "bg-[#3E4042] text-[#B0B3B8]" : ""
+                              }`}
+                            >
                               {project.details}
                             </p>
                           </DialogHeader>
-                          <div className="mt-2">
+                          <div className="mt-2 my-auto">
                             <div>
                               <img
                                 src={project.image}
@@ -618,13 +480,13 @@ export default function EnhancedLightModePortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
+            <h2 className="text-3xl font-bold mb-8 text-center  text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className="bg-white  dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
-              <CardContent className="pt-6">
+            <Card className="bg-white shadow-lg dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
+              <CardContent className="pt-6 ">
                 <Tabs defaultValue="languages" className="w-full text-center ">
-                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 ">
+                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 border py-5">
                     <TabsTrigger
                       value="languages"
                       className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
@@ -667,8 +529,16 @@ export default function EnhancedLightModePortfolio() {
                               tickFormatter={(value) => value.slice(0, 3)}
                               hide
                             />
-                            <XAxis dataKey="Proficiency" type="number" domain={[0, 10]} hide />
-                            <Tooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                            <XAxis
+                              dataKey="Proficiency"
+                              type="number"
+                              domain={[0, 10]}
+                              hide
+                            />
+                            <Tooltip
+                              cursor={false}
+                              content={<ChartTooltipContent indicator="line" />}
+                            />
                             <Bar
                               dataKey="Proficiency"
                               layout="vertical"
@@ -724,7 +594,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {job.title}
@@ -760,7 +630,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {edu.degree}
@@ -791,7 +661,7 @@ export default function EnhancedLightModePortfolio() {
           {/* Blog Section */}
           <motion.section
             id="blog"
-            className="py-16"
+            className="py-16 "
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -809,7 +679,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white  dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white  shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {post.title}
@@ -834,8 +704,8 @@ export default function EnhancedLightModePortfolio() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent
-                          className={`max-w-3xl w-full ${
-                            darkMode ? "bg-[#3E4042] text-white" : ""
+                          className={`max-w-3xl w-full  ${
+                            darkMode ? "bg-[#3E4042] border-0 text-white" : ""
                           }`}
                         >
                           <DialogHeader>
