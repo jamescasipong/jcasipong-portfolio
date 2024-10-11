@@ -1,16 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-  Moon,
-  Sun,
-  Github,
-  Linkedin,
-  Mail,
-  ChevronDown,
-  X,
-} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,9 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
@@ -31,21 +18,39 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ChevronDown,
+  Code,
+  Github,
+  Linkedin,
+  Mail,
+  Moon,
+  Sun,
+  X,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
-export default function CompactAnimatedPortfolio() {
+export default function EnhancedLightModePortfolio() {
   const [darkMode, setDarkMode] = useState(() => {
-    // Get initial darkMode state from localStorage
     if (typeof window !== "undefined") {
-      const savedMode = localStorage.getItem("darkMode");
-      return savedMode === "true"; // Convert string to boolean
+      const savedDarkMode = localStorage.getItem("darkMode");
+      if (savedDarkMode) {
+        return JSON.parse(savedDarkMode);
+      }
     }
+    return false;
   });
   const [activeSection, setActiveSection] = useState("home");
+  const [isLoading, setIsLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => {
+      setIsLoading(false);
       document.body.style.overflow = "visible";
     }, 0);
     return () => {
@@ -59,7 +64,20 @@ export default function CompactAnimatedPortfolio() {
     document.documentElement.classList.toggle("dark");
   };
 
-  const sections = ["home", "about", "projects", "skills-experience", "blog"];
+  useEffect(() => {
+
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]
+    )
+
+  const sections = [
+    "home",
+    "about",
+    "projects",
+    "skills",
+    "experience-education",
+    "blog",
+  ];
 
   const handleScroll = () => {
     const currentSection = sections.find((section) => {
@@ -72,13 +90,6 @@ export default function CompactAnimatedPortfolio() {
     });
     if (currentSection) setActiveSection(currentSection);
   };
-
-  useEffect(() => {
-    // Apply dark mode class based on state
-    document.documentElement.classList.toggle("dark", darkMode);
-    // Save the current mode to localStorage
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -171,38 +182,113 @@ export default function CompactAnimatedPortfolio() {
     },
   ];
 
+  const skills = {
+    languages: [
+      { name: "JavaScript", level: 90 },
+      { name: "TypeScript", level: 85 },
+      { name: "Python", level: 80 },
+      { name: "Java", level: 75 },
+      { name: "C++", level: 70 },
+      { name: "SQL", level: 85 },
+    ],
+    frameworks: [
+      { name: "React", level: 95 },
+      { name: "Next.js", level: 90 },
+      { name: "Node.js", level: 85 },
+      { name: "Express", level: 80 },
+      { name: "Django", level: 75 },
+      { name: "Spring Boot", level: 70 },
+    ],
+    tools: [
+      { name: "Git", level: 90 },
+      { name: "Docker", level: 85 },
+      { name: "Kubernetes", level: 75 },
+      { name: "AWS", level: 80 },
+      { name: "Jenkins", level: 70 },
+      { name: "Jira", level: 85 },
+    ],
+  };
+
+  const experiences = [
+    {
+      title: "Web Developer - Internship",
+      company: "SYSU International",
+      period: "March 2024 - June 2024",
+      responsibilities: [
+        "Developed web applications using PHP and Bootstrap",
+        "Collaborated with the team to enhance user interfaces",
+        "Improved website functionality"
+      ],
+    },
+    {
+      title: "Customer Service Representative",
+      company: "Concentrix",
+      period: "August 2022 - June 2024",
+      responsibilities: [
+        "Provided exceptional customer support through various channels",
+        "Resolved customer inquiries and issues in a timely manner",
+        "Maintained accurate records of interactions"
+      ],
+    },
+    {
+      title: "IT Admin & System Developer",
+      company: "Army Navy Burger",
+      period: "August 2024 - Present",
+      responsibilities: [
+        "Developing and maintaining web applications using Azure, React, Next.js, Tailwind, MongoDB, Laravel, and MySQL",
+        "Managing system administration tasks",
+        "Ensuring optimal performance of IT infrastructure"
+      ],
+    },
+  ];
+  
+
+  const education = [
+    {
+      degree: "Information Communication and Technology",
+      institution: "STI College",
+      period: "2018 - 2020",
+      details: [
+        "Specialized in Artificial Intelligence and Machine Learning",
+        "Thesis: 'Optimizing Neural Networks for Edge Computing Applications'",
+        "GWA: 1.6",
+      ],
+    },
+    {
+      degree: "Bachelor of Science in Information Technology",
+      institution: "STI College",
+      period: "2020-2024",
+      details: [
+        "Minor in Data Science",
+        "Capstone Project: 'Developing a Scalable Microservices Architecture'",
+        "GWA: 1.5",
+      ],
+    },
+  ];
+
   return (
-    <div className={`justify-center mx-auto w-full ${darkMode ? "dark" : ""}`}>
-      <div className="bg-background text-foreground w-full overflow-hidden">
+    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
+      
+      <div className="bg-white text-gray-900 dark:bg-[#18191A] dark:text-[#E4E6EB] w-full overflow-hidden">
         {/* Header */}
-        <header className="fixed top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="fixed top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur dark:border-[#3E4042] dark:bg-[#242526]/95">
           <div className="container mx-auto px-4">
-            <div className="flex h-20 items-center justify-between">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                {menuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <ChevronDown className="h-6 w-6" />
-                )}
-              </Button>
-              <nav
-                className={`${
-                  menuOpen ? "flex" : "hidden"
-                } md:flex absolute md:relative top-20 md:top-0 left-0 right-0 bg-background md:bg-transparent flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 space-x-0 md:space-x-6 p-4 md:p-0 w-full`}
-              >
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Code className="h-8 w-8 text-blue-600 dark:text-[#2374E1]" />
+                <span className="text-xl font-bold text-blue-600 dark:text-[#2374E1]">
+                  JC
+                </span>
+              </div>
+              <nav className="hidden md:flex items-center space-x-6">
                 {sections.map((section) => (
                   <motion.a
                     key={section}
                     href={`#${section}`}
-                    className={`text-lg font-medium transition-colors hover:text-primary ${
+                    className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-[#2374E1] ${
                       activeSection === section
-                        ? "text-primary"
-                        : "text-muted-foreground"
+                        ? "text-blue-600 dark:text-[#2374E1]"
+                        : "text-gray-600 dark:text-[#B0B3B8]"
                     }`}
                     onClick={(e) => {
                       e.preventDefault();
@@ -211,46 +297,101 @@ export default function CompactAnimatedPortfolio() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <p className="text-center w-full">
-                      {section === "skills-experience"
-                        ? "Skills & Experience"
-                        : section.charAt(0).toUpperCase() + section.slice(1)}
-                    </p>
+                    {section === "experience-education"
+                      ? "Experience & Education"
+                      : section.charAt(0).toUpperCase() + section.slice(1)}
                   </motion.a>
                 ))}
               </nav>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
-                  {darkMode ? (
-                    <Sun className="h-5 w-5" />
+              <div className="flex items-center space-x-4">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleDarkMode}
+                    className="text-gray-600 dark:text-[#B0B3B8]"
+                  >
+                    {darkMode ? (
+                      <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
+                    )}
+                  </Button>
+                </motion.div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden text-gray-600 dark:text-[#B0B3B8]"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  {menuOpen ? (
+                    <X className="h-6 w-6" />
                   ) : (
-                    <Moon className="h-5 w-5" />
+                    <ChevronDown className="h-6 w-6" />
                   )}
                 </Button>
-              </motion.div>
+              </div>
             </div>
           </div>
         </header>
 
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              className="fixed inset-0 z-30 bg-white dark:bg-[#242526] md:hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex flex-col items-center justify-center h-full space-y-6">
+                {sections.map((section) => (
+                  <motion.a
+                    key={section}
+                    href={`#${section}`}
+                    className={`text-lg font-medium transition-colors hover:text-blue-600 dark:hover:text-[#2374E1] ${
+                      activeSection === section
+                        ? "text-blue-600 dark:text-[#2374E1]"
+                        : "text-gray-600 dark:text-[#B0B3B8]"
+                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(section);
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {section === "experience-education"
+                      ? "Experience & Education"
+                      : section.charAt(0).toUpperCase() + section.slice(1)}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Main Content */}
-        <main className="container mx-auto px-4 pt-14">
-          {/* Hero Section */}
+        <main className="container mx-auto px-4 pt-20">
+          {/* Home Section */}
           <motion.section
-            id="hero"
+            id="home"
             className="flex min-h-screen items-center justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="text-center ">
+            <div className="text-center">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
+                
                 <Avatar className="h-[300px] w-[300px] mx-auto mb-4">
                   <AvatarImage
                     src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/447772630_2787488948073950_480088435303528636_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=244rMvgN63oQ7kNvgFH8WH0&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=ANPXIHIINOjYqcYPkx5bfru&oh=00_AYBEmXhpRykeJxcMh6WivjFazNX6hljpUtcnmx-r4DXRvA&oe=670C7D8B"
@@ -260,7 +401,7 @@ export default function CompactAnimatedPortfolio() {
                 </Avatar>
               </motion.div>
               <motion.h1
-                className="text-4xl font-bold mb-2"
+                className="sm:text-[36px] text-[28px] font-bold mb-2 text-blue-600 dark:text-[#2374E1]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -268,59 +409,68 @@ export default function CompactAnimatedPortfolio() {
                 James Casipong
               </motion.h1>
               <motion.p
-                className="text-xl text-muted-foreground mb-4"
+                className="sm:text-[20px] text-[15px] text-gray-600 dark:text-[#B0B3B8] mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                Full-Stack Developer | Software Engineer
+                Full Stack Developer | Software Engineer
               </motion.p>
 
               {/* Contact Section */}
-              <motion.section
-                id="contact"
-                className="mb-5 w-full justify-center flex"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true }}
+          <motion.section
+            className=""
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <div className="flex gap-2 justify-center mb-3">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
               >
-                <div className="flex space-x-4">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Button variant="outline">
-                      <Mail className="sm:mr-2 mr-0 h-4 w-4" />{" "}
-                      <p className="sm:block hidden">Email</p>
-                    </Button>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Button variant="outline">
-                      <Linkedin className="sm:mr-2 mr-0 h-4 w-4" />{" "}
-                      <p className="sm:block hidden">Linkedin</p>
-                    </Button>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Button variant="outline">
-                      <Github className="sm:mr-2 mr-0 h-4 w-4" />{" "}
-                      <p className="sm:block hidden">GitHub</p>
-                    </Button>
-                  </motion.div>
-                </div>
-              </motion.section>
+                <Button
+                onClick={() => {window.location.href = "mailto:jamesxcasipong@gmail.com";}}
+                  variant="outline"
+                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                >
+                  <Mail  className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">Email</p>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                onClick={() => {window.location.href = "https://www.linkedin.com/in/jamescasipong/";}}
+                  variant="outline"
+                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                >
+                  <Linkedin className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">Linkedin</p>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                onClick={() => {window.location.href = "https://github.com/jamescasipong";}}
+                  variant="outline"
+                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                >
+                  <Github className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">GitHub</p>
+                </Button>
+              </motion.div>
+            </div>
+          </motion.section>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                <ChevronDown className="mx-auto animate-bounce" />
+                
+                <ChevronDown className="mx-auto animate-bounce text-gray-400 dark:text-[#B0B3B8]" />
               </motion.div>
             </div>
           </motion.section>
@@ -334,13 +484,15 @@ export default function CompactAnimatedPortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">About Me</h2>
-            <p className="text-lg text-muted-foreground">
-              I'm a passionate full-stack developer with a keen interest in
-              building scalable web applications and contributing to open-source
-              projects. With a strong foundation in computer science and years
-              of hands-on experience, I strive to create efficient,
-              user-friendly solutions to complex problems.
+            <h2 className="text-3xl text-center font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
+              About Me
+            </h2>
+            <p className="text-lg text-gray-600  dark:text-[#B0B3B8] text-justify md:text-center mx-auto md:w-[70%] w-full">
+              I'm a passionate full-stack developer and software engineer with a
+              keen interest in building scalable web applications and
+              contributing to open-source projects. With a strong foundation in
+              computer science and years of hands-on experience, I strive to
+              create efficient, user-friendly solutions to complex problems.
             </p>
           </motion.section>
 
@@ -353,7 +505,9 @@ export default function CompactAnimatedPortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Projects</h2>
+            <h2 className="text-3xl text-center font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
+              Projects
+            </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project, index) => (
                 <motion.div
@@ -363,27 +517,35 @@ export default function CompactAnimatedPortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card>
+                  <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
+                      <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="dark:text-[#B0B3B8]">
+                        {project.description}
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full border h-48 object-cover rounded-md mb-4"
+                        className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     </CardContent>
                     <CardFooter>
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button>View Project</Button>
+                          <Button className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-[#2374E1] dark:hover:bg-[#2374E1]/90 dark:text-white">
+                            View Project
+                          </Button>
                         </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader className="">
-                            <DialogTitle>{project.title}</DialogTitle>
-                            <DialogDescription>
+                        <DialogContent className="bg-white dark:bg-[#242526]">
+                          <DialogHeader>
+                            <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
+                              {project.title}
+                            </DialogTitle>
+                            <DialogDescription className="dark:text-[#B0B3B8]">
                               {project.description}
                             </DialogDescription>
                           </DialogHeader>
@@ -393,7 +555,9 @@ export default function CompactAnimatedPortfolio() {
                               alt={project.title}
                               className="w-full h-64 object-cover rounded-md mb-4"
                             />
-                            <p>{project.details}</p>
+                            <p className="text-gray-600 dark:text-[#B0B3B8]">
+                              {project.details}
+                            </p>
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -404,140 +568,164 @@ export default function CompactAnimatedPortfolio() {
             </div>
           </motion.section>
 
-          {/* Skills and Experience Section */}
+          {/* Skills Section */}
           <motion.section
-            id="skills-experience"
+            id="skills"
             className="py-16"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Skills & Experience</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">Skills</h3>
-                <Tabs defaultValue="languages">
-                  <TabsList>
-                    <TabsTrigger value="languages">Languages</TabsTrigger>
-                    <TabsTrigger value="frameworks">Frameworks</TabsTrigger>
-                    <TabsTrigger value="tools">Tools</TabsTrigger>
+            <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
+              Skills & Technology Stack
+            </h2>
+            <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+              <CardContent className="pt-6">
+                <Tabs defaultValue="languages" className="w-full">
+                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4">
+                    <TabsTrigger
+                      value="languages"
+                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                    >
+                      Languages
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="frameworks"
+                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                    >
+                      Frameworks
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="tools"
+                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                    >
+                      Tools
+                    </TabsTrigger>
                   </TabsList>
-                  <TabsContent value="languages" className="mt-4">
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "JavaScript",
-                        "TypeScript",
-                        "Python",
-                        "Java",
-                        "C++",
-                        "SQL",
-                      ].map((lang, index) => (
-                        <motion.div
-                          key={lang}
-                          whileHover={{ scale: 1.1 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                          <Badge variant="secondary">{lang}</Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </TabsContent>
-                  <TabsContent value="frameworks" className="mt-4">
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "React",
-                        "Next.js",
-                        "Node.js",
-                        "Express",
-                        "Django",
-                        "Spring Boot",
-                      ].map((framework, index) => (
-                        <motion.div
-                          key={framework}
-                          whileHover={{ scale: 1.1 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                          <Badge variant="secondary">{framework}</Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </TabsContent>
-                  <TabsContent value="tools" className="mt-4">
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "Git",
-                        "Docker",
-                        "Kubernetes",
-                        "AWS",
-                        "Jenkins",
-                        "Jira",
-                      ].map((tool, index) => (
-                        <motion.div
-                          key={tool}
-                          whileHover={{ scale: 1.1 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                          <Badge variant="secondary">{tool}</Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </TabsContent>
+                  {Object.entries(skills).map(([category, items]) => (
+                    <TabsContent key={category} value={category}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-4">
+                          {items.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center justify-between"
+                            >
+                              <span className="text-gray-700 dark:text-[#B0B3B8]">
+                                {skill.name}
+                              </span>
+                              <span className="text-blue-600 dark:text-[#2374E1] font-semibold">
+                                {skill.level}%
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="h-[300px]">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={items}>
+                              <XAxis dataKey="name" />
+                              <YAxis />
+                              <Bar
+                                dataKey="level"
+                                fill={darkMode ? "#2374E1" : "#2563EB"}
+                              />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </TabsContent>
+                  ))}
                 </Tabs>
+              </CardContent>
+            </Card>
+          </motion.section>
+
+          {/* Experience and Education Section */}
+          <motion.section
+            id="experience-education"
+            className="py-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl text-center font-bold mb-8 text-blue-600 dark:text-[#2374E1]">
+                Experience & Education
+              </h2>
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
+              
+              <div className="">
+                <h3 className="text-2xl font-semibold mb-4 text-center text-blue-600 dark:text-[#2374E1]">
+                  Work Experience
+                </h3>
+                {experiences.map((job, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-2">
+                      <CardHeader>
+                        <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
+                          {job.title}
+                        </CardTitle>
+                        <CardDescription className="text-gray-600 dark:text-[#B0B3B8]">
+                          {job.company} | {job.period}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="list-disc pl-5 space-y-2">
+                          {job.responsibilities.map((responsibility, idx) => (
+                            <li
+                              key={idx}
+                              className="text-gray-600 dark:text-[#B0B3B8]"
+                            >
+                              {responsibility}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
               <div>
-                <h3 className="text-2xl font-semibold mb-4">Experience</h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      title: "Web Developer - Internship",
-                      company: "SYSU International",
-                      period: "March 2024 - June 2024",
-                      responsibilities:
-                        "Developed web applications using PHP and Bootstrap; collaborated with the team to enhance user interfaces and improve website functionality.",
-                    },
-                    {
-                      title: "Customer Service Representative",
-                      company: "Concentrix",
-                      period: "August 2022 - June 2024",
-                      responsibilities:
-                        "Provided exceptional customer support through various channels; resolved customer inquiries and issues in a timely manner; maintained accurate records of interactions.",
-                    },
-                    {
-                      title: "IT Admin & System Developer",
-                      company: "Army Navy Burger",
-                      period: "August 2024 - Present",
-                      responsibilities:
-                        "Developing and maintaining web applications using Azure, React, Next.js, Tailwind, MongoDB, Laravel, and MySQL; managing system administration tasks and ensuring optimal performance of IT infrastructure.",
-                    },
-                  ].map((job, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ x: 10 }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>{job.title}</CardTitle>
-                          <CardDescription>
-                            {job.company} | {job.period}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <p>{job.responsibilities}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  ))}
-                </div>
+                <h3 className="text-2xl font-semibold mb-4 text-center text-blue-600 dark:text-[#2374E1]">
+                  Education
+                </h3>
+                {education.map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-2">
+                      <CardHeader>
+                        <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
+                          {edu.degree}
+                        </CardTitle>
+                        <CardDescription className="text-gray-600 dark:text-[#B0B3B8]">
+                          {edu.institution} | {edu.period}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="list-disc pl-5 space-y-2">
+                          {edu.details.map((detail, idx) => (
+                            <li
+                              key={idx}
+                              className="text-gray-600 dark:text-[#B0B3B8]"
+                            >
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.section>
@@ -551,7 +739,9 @@ export default function CompactAnimatedPortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4">Latest Blog Posts</h2>
+            <h2 className="text-3xl font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
+              Latest Blog Posts
+            </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {blogPosts.map((post, index) => (
                 <motion.div
@@ -561,28 +751,43 @@ export default function CompactAnimatedPortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card>
+                  <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
-                      <CardTitle>{post.title}</CardTitle>
-                      <CardDescription>Posted on {post.date}</CardDescription>
+                      <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                        {post.title}
+                      </CardTitle>
+                      <CardDescription className="dark:text-[#B0B3B8]">
+                        Posted on {post.date}
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p>{post.excerpt}</p>
+                      <p className="text-gray-600 dark:text-[#B0B3B8]">
+                        {post.excerpt}
+                      </p>
                     </CardContent>
                     <CardFooter>
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline">Read More</Button>
+                          <Button
+                            variant="outline"
+                            className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                          >
+                            Read More
+                          </Button>
                         </DialogTrigger>
-                        <DialogContent>
+                        <DialogContent className="bg-white dark:bg-[#242526]">
                           <DialogHeader>
-                            <DialogTitle>{post.title}</DialogTitle>
-                            <DialogDescription>
+                            <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
+                              {post.title}
+                            </DialogTitle>
+                            <DialogDescription className="dark:text-[#B0B3B8]">
                               Posted on {post.date}
                             </DialogDescription>
                           </DialogHeader>
                           <div className="mt-4">
-                            <p>{post.content}</p>
+                            <p className="text-gray-600 dark:text-[#B0B3B8]">
+                              {post.content}
+                            </p>
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -592,15 +797,16 @@ export default function CompactAnimatedPortfolio() {
               ))}
             </div>
           </motion.section>
+
+          
         </main>
 
         {/* Footer */}
-        <footer className="border-t flex justify-center py-6 md:py-0">
-          <div className="container flex flex-col items-center justify-center gap-4 md:h-24 md:flex-row">
+        <footer className="border-t border-gray-200 dark:border-[#3E4042] py-6 md:py-0">
+          <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
             <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-              <p className="text-center text-sm leading-loose md:text-left">
-                Built by James Casipong with Next.JS & Tailwind. The source code
-                is available on GitHub.
+              <p className="text-center text-sm leading-loose text-gray-600 dark:text-[#B0B3B8] md:text-left">
+                Built by James Casipong. The source code is available on GitHub.
               </p>
             </div>
           </div>
