@@ -188,15 +188,16 @@ export default function EnhancedLightModePortfolio() {
       { name: "TypeScript", level: 85 },
       { name: "Python", level: 80 },
       { name: "Java", level: 75 },
-      { name: "C++", level: 70 },
+      { name: "C#", level: 70 },
       { name: "SQL", level: 85 },
+      { name: "NoSQL", level: 80 },
     ],
     frameworks: [
       { name: "React", level: 95 },
       { name: "Next.js", level: 90 },
       { name: "Node.js", level: 85 },
       { name: "Express", level: 80 },
-      { name: "Django", level: 75 },
+      { name: "ASP.NET", level: 75 },
       { name: "Spring Boot", level: 70 },
     ],
     tools: [
@@ -204,8 +205,7 @@ export default function EnhancedLightModePortfolio() {
       { name: "Docker", level: 85 },
       { name: "Kubernetes", level: 75 },
       { name: "AWS", level: 80 },
-      { name: "Jenkins", level: 70 },
-      { name: "Jira", level: 85 },
+      { name: "Azure", level: 70 },
     ],
   };
 
