@@ -91,11 +91,11 @@ const blogPosts = [
 
 const skills = {
   languages: [
-    { name: "JavaScript", Proficiency: 7, mobile: 6.5 },
+    { name: "JavaScript", Proficiency: 8, mobile: 6.5 },
     { name: "TypeScript", Proficiency: 6.5, mobile: 6 },
     { name: "Python", Proficiency: 5.5, mobile: 5 },
-    { name: "Java", Proficiency: 6, mobile: 5.5 },
-    { name: "C#", Proficiency: 6.5, mobile: 6 },
+    { name: "Java", Proficiency: 8, mobile: 5.5 },
+    { name: "C#", Proficiency: 8, mobile: 6 },
     { name: "SQL", Proficiency: 6, mobile: 5.5 },
     { name: "NoSQL", Proficiency: 5.5, mobile: 5 },
   ],
@@ -190,3 +190,4 @@ const education = [
 ];
 
 export { blogPosts, chartConfig, education, experiences, projects, skills };
+

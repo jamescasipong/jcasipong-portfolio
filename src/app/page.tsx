@@ -19,6 +19,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -57,6 +58,7 @@ export default function EnhancedLightModePortfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState("latest");
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -247,7 +249,7 @@ export default function EnhancedLightModePortfolio() {
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Avatar className="h-[300px] w-[300px] mx-auto mb-4">
+                <Avatar className="md:h-[400px] md:w-[400px] h-[300px] w-[300px] mx-auto mb-4">
                   <AvatarImage
                     src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/447772630_2787488948073950_480088435303528636_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=244rMvgN63oQ7kNvgFH8WH0&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=ANPXIHIINOjYqcYPkx5bfru&oh=00_AYBEmXhpRykeJxcMh6WivjFazNX6hljpUtcnmx-r4DXRvA&oe=670C7D8B"
                     alt="James Casipong"
@@ -264,7 +266,7 @@ export default function EnhancedLightModePortfolio() {
                 James Casipong
               </motion.h1>
               <motion.p
-                className="sm:text-[20px] text-[15px] text-gray-600 dark:text-[#B0B3B8] mb-4"
+                className="sm:text-[16px] text-[15px] text-gray-600 dark:text-[#B0B3B8] mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -303,8 +305,8 @@ export default function EnhancedLightModePortfolio() {
                   >
                     <Button
                       onClick={() => {
-                        window.location.href =
-                          "https://www.linkedin.com/in/jamescasipong/";
+                        window.open(
+                          "https://www.linkedin.com/in/jamescasipong/, _blank");
                       }}
                       variant="outline"
                       className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
@@ -316,11 +318,12 @@ export default function EnhancedLightModePortfolio() {
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
-                  >
+                  > 
                     <Button
                       onClick={() => {
-                        window.location.href =
-                          "https://github.com/jamescasipong";
+                        window.open("https://github.com/jamescasipong", "_blank"); 
+                          
+                        
                       }}
                       variant="outline"
                       className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
@@ -410,7 +413,7 @@ export default function EnhancedLightModePortfolio() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent
-                          className={`max-w-3xl w-full ${
+                          className={`sm:w-full w-[90%] rounded-lg max-w-3xl  ${
                             darkMode ? "bg-[#3E4042] text-white border-0" : ""
                           } overflow-y-auto`}
                         >
@@ -425,7 +428,7 @@ export default function EnhancedLightModePortfolio() {
                                 rel="noopener noreferrer"
                                 className="text-blue-600 dark:text-[#2374E1] hover:underline"
                               >
-                                <Github className="inline-block mr-1 h-4 w-4" />{" "}
+                                <Github className="inline-block  mr-1 h-4 w-4" />{" "}
                                 GitHub
                               </a>
                               <a
@@ -524,7 +527,6 @@ export default function EnhancedLightModePortfolio() {
                               dataKey="name"
                               type="category"
                               tickLine={false}
-                              tickMargin={5}
                               axisLine={false}
                               tickFormatter={(value) => value.slice(0, 3)}
                               hide
@@ -532,7 +534,7 @@ export default function EnhancedLightModePortfolio() {
                             <XAxis
                               dataKey="Proficiency"
                               type="number"
-                              domain={[0, 10]}
+                              domain={[0, 11]}
                               hide
                             />
                             <Tooltip
@@ -608,7 +610,7 @@ export default function EnhancedLightModePortfolio() {
                           {job.responsibilities.map((responsibility, idx) => (
                             <li
                               key={idx}
-                              className="text-gray-600 dark:text-[#B0B3B8]"
+                              className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8]"
                             >
                               {responsibility}
                             </li>
@@ -644,7 +646,7 @@ export default function EnhancedLightModePortfolio() {
                           {edu.details.map((detail, idx) => (
                             <li
                               key={idx}
-                              className="text-gray-600 dark:text-[#B0B3B8]"
+                              className="sm:text-[16px] text-[13px] text-gray-600 dark:text-[#B0B3B8]"
                             >
                               {detail}
                             </li>
@@ -659,19 +661,42 @@ export default function EnhancedLightModePortfolio() {
           </motion.section>
 
           {/* Blog Section */}
-          <motion.section
-            id="blog"
-            className="py-16 "
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
+            <motion.section
+              id="blog"
+              className="py-16 "
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
               Latest Blog Posts
-            </h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {blogPosts.map((post, index) => (
+              </h2>
+              <div className="flex justify-start mb-3">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                <Button className="bg-white border rounded-lg border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white mx-2 p-2 ">
+                  Sort by: {sortOrder === "latest" ? "Latest" : "Oldest"}
+                </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => setSortOrder("latest")}>
+                  Latest
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSortOrder("oldest")}>
+                  Oldest
+                </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {blogPosts
+                .sort((a, b) =>
+                sortOrder === "latest"
+                  ? new Date(b.date).getTime() - new Date(a.date).getTime()
+                  : new Date(a.date).getTime() - new Date(b.date).getTime()
+                )
+                .map((post, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05 }}
@@ -679,64 +704,64 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white  shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
-                    <CardHeader>
-                      <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                  <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <CardHeader>
+                    <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                    {post.title}
+                    </CardTitle>
+                    <CardDescription className="dark:text-[#B0B3B8]">
+                    Posted on {post.date}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8]">
+                    {post.excerpt}
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                      variant="outline"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                      >
+                      Read More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent
+                      className={`max-w-3xl sm:w-full w-[90%] rounded-lg ${
+                      darkMode ? "bg-[#3E4042] border-0 text-white" : ""
+                      }`}
+                    >
+                      <DialogHeader>
+                      <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
                         {post.title}
-                      </CardTitle>
-                      <CardDescription className="dark:text-[#B0B3B8]">
+                      </DialogTitle>
+                      <DialogDescription
+                        className={`${
+                        darkMode ? "bg-[#3E4042] text-[#fafcff]" : ""
+                        }`}
+                      >
                         Posted on {post.date}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 dark:text-[#B0B3B8]">
-                        {post.excerpt}
+                      </DialogDescription>
+                      </DialogHeader>
+                      <div className="mt-4 ">
+                      <p
+                        className={`sm:text-[16px] text-[13px] ${
+                        darkMode ? "bg-[#3E4042] text-white" : ""
+                        } `}
+                      >
+                        {post.content}
                       </p>
-                    </CardContent>
-                    <CardFooter>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
-                          >
-                            Read More
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent
-                          className={`max-w-3xl w-full  ${
-                            darkMode ? "bg-[#3E4042] border-0 text-white" : ""
-                          }`}
-                        >
-                          <DialogHeader>
-                            <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
-                              {post.title}
-                            </DialogTitle>
-                            <DialogDescription
-                              className={`${
-                                darkMode ? "bg-[#3E4042] text-[#fafcff]" : ""
-                              }`}
-                            >
-                              Posted on {post.date}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="mt-4">
-                            <p
-                              className={`${
-                                darkMode ? "bg-[#3E4042] text-white" : ""
-                              }`}
-                            >
-                              {post.content}
-                            </p>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </CardFooter>
+                      </div>
+                    </DialogContent>
+                    </Dialog>
+                  </CardFooter>
                   </Card>
                 </motion.div>
-              ))}
-            </div>
-          </motion.section>
+                ))}
+              </div>
+            </motion.section>
         </main>
 
         {/* Footer */}
