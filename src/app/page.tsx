@@ -380,7 +380,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {project.title}
@@ -403,15 +403,21 @@ export default function EnhancedLightModePortfolio() {
                             View Project
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="bg-white w-full max-w-[80%] h-[80%] dark:bg-[#242526] overflow-y-auto">
+                        <DialogContent className={`max-w-3xl w-full ${
+                            darkMode ? "bg-[#3E4042] text-white border-0" : ""
+                          } overflow-y-auto`}>
                           <DialogHeader className="">
                             <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
                               {project.title}
                             </DialogTitle>
-                            <DialogDescription className="dark:text-[#B0B3B8]">
+                            <DialogDescription className={`${
+                                darkMode ? "bg-[#3E4042] text-blue-300" : ""
+                              }`}>
                               {project.description}
                             </DialogDescription>
-                            <p className="text-gray-600 dark:text-[#B0B3B8] text-center ">
+                            <p className={`${
+                                darkMode ? "bg-[#3E4042] text-[#B0B3B8]" : ""
+                              }`}>
                               {project.details}
                             </p>
                           </DialogHeader>
@@ -442,13 +448,13 @@ export default function EnhancedLightModePortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
+            <h2 className="text-3xl font-bold mb-8 text-center  text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className="bg-white  dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
-              <CardContent className="pt-6">
+            <Card className="bg-white shadow-lg dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
+              <CardContent className="pt-6 ">
                 <Tabs defaultValue="languages" className="w-full text-center ">
-                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 ">
+                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 border py-5">
                     <TabsTrigger
                       value="languages"
                       className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
@@ -548,7 +554,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {job.title}
@@ -584,7 +590,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {edu.degree}
@@ -615,7 +621,7 @@ export default function EnhancedLightModePortfolio() {
           {/* Blog Section */}
           <motion.section
             id="blog"
-            className="py-16"
+            className="py-16 " 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -633,7 +639,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white  dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white  shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {post.title}
@@ -658,8 +664,8 @@ export default function EnhancedLightModePortfolio() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent
-                          className={`max-w-3xl w-full ${
-                            darkMode ? "bg-[#3E4042] text-white" : ""
+                          className={`max-w-3xl w-full  ${
+                            darkMode ? "bg-[#3E4042] border-0 text-white" : ""
                           }`}
                         >
                           <DialogHeader>
