@@ -376,7 +376,7 @@ export default function EnhancedLightModePortfolio() {
         </AnimatePresence>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 pt-20">
+        <main className="container mx-auto px-4 sm:pt-16 pt-20">
           {/* Home Section */}
           <motion.section
             id="home"
