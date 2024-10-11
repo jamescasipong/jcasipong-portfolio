@@ -423,7 +423,7 @@ export default function EnhancedLightModePortfolio() {
                               </motion.div>
                             ))}
                           </div>
-                          <CardDescription className="dark:text-[#B0B3B8]">
+                          <CardDescription className="dark:text-[#B0B3B8] sm:text-[14px] text-[13px]">
                             {project.description}
                           </CardDescription>
                         </CardHeader>
