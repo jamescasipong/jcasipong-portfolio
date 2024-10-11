@@ -188,7 +188,7 @@ export default function EnhancedLightModePortfolio() {
       { name: "TypeScript", level: 85 },
       { name: "Python", level: 80 },
       { name: "Java", level: 75 },
-      { name: "C#", level: 70 },
+      { name: "C#", level: 95 },
       { name: "SQL", level: 85 },
       { name: "NoSQL", level: 80 },
     ],
@@ -249,9 +249,9 @@ export default function EnhancedLightModePortfolio() {
       institution: "STI College",
       period: "2018 - 2020",
       details: [
-        "Specialized in Artificial Intelligence and Machine Learning",
-        "Thesis: 'Optimizing Neural Networks for Edge Computing Applications'",
-        "GWA: 1.6",
+        "Specialized in Software Development",
+        "Acquired skills in web development and database management",
+        "Expertise in HTML, CSS, JavaScript, PHP, Java, and MySQL",
       ],
     },
     {
@@ -259,8 +259,8 @@ export default function EnhancedLightModePortfolio() {
       institution: "STI College",
       period: "2020-2024",
       details: [
-        "Minor in Data Science",
-        "Capstone Project: 'Developing a Scalable Microservices Architecture'",
+        "Expertise in C# and Java",
+        "Capstone Project: 'Developing a 2D RPG Game using Unity'",
         "GWA: 1.5",
       ],
     },
@@ -487,7 +487,7 @@ export default function EnhancedLightModePortfolio() {
             <h2 className="text-3xl text-center font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
               About Me
             </h2>
-            <p className="text-lg text-gray-600  dark:text-[#B0B3B8] text-justify md:text-center mx-auto md:w-[70%] w-full">
+            <p className="sm:text-lg text-sm text-gray-600  dark:text-[#B0B3B8] text-justify md:text-center mx-auto md:w-[70%] w-full">
               I'm a passionate full-stack developer and software engineer with a
               keen interest in building scalable web applications and
               contributing to open-source projects. With a strong foundation in
@@ -582,23 +582,23 @@ export default function EnhancedLightModePortfolio() {
             </h2>
             <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
               <CardContent className="pt-6">
-                <Tabs defaultValue="languages" className="w-full">
-                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4">
+                <Tabs defaultValue="languages" className="w-full text-center ">
+                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 ">
                     <TabsTrigger
                       value="languages"
-                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
                     >
                       Languages
                     </TabsTrigger>
                     <TabsTrigger
                       value="frameworks"
-                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
                     >
                       Frameworks
                     </TabsTrigger>
                     <TabsTrigger
                       value="tools"
-                      className="data-[state=active]:bg-white dark:data-[state=active]:bg-[#242526]"
+                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
                     >
                       Tools
                     </TabsTrigger>
