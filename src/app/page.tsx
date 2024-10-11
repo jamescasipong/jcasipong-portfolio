@@ -47,10 +47,7 @@ import {
 } from "recharts";
 
 export default function EnhancedLightModePortfolio() {
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedDarkMode = localStorage.getItem("darkMode");
-    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
-  });
+  const [darkMode, setDarkMode] = useState(false)
 
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
@@ -68,10 +65,21 @@ export default function EnhancedLightModePortfolio() {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedDarkMode = localStorage.getItem("darkMode");
+      if (savedDarkMode) {
+        setDarkMode(JSON.parse(savedDarkMode));
+      }
+    }
+  }, []);
+
   const toggleDarkMode = () => {
-    setDarkMode((prev: boolean) => {
+    setDarkMode((prev) => {
       const newDarkMode = !prev;
-      localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+      }
       return newDarkMode;
     });
   };
