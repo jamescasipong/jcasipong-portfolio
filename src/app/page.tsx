@@ -11,6 +11,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -31,18 +36,22 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 export default function EnhancedLightModePortfolio() {
   const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      const savedDarkMode = localStorage.getItem("darkMode");
-      if (savedDarkMode) {
-        return JSON.parse(savedDarkMode);
-      }
-    }
-    return false;
+    const savedDarkMode = localStorage.getItem("darkMode");
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
   });
+
   const [activeSection, setActiveSection] = useState("home");
   const [isLoading, setIsLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,15 +69,12 @@ export default function EnhancedLightModePortfolio() {
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode((prev: boolean) => !prev);
-
+    setDarkMode((prev: boolean) => {
+      const newDarkMode = !prev;
+      localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+      return newDarkMode;
+    });
   };
-
-  useEffect(() => {
-
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]
-    )
 
   const sections = [
     "home",
@@ -184,30 +190,42 @@ export default function EnhancedLightModePortfolio() {
 
   const skills = {
     languages: [
-      { name: "JavaScript", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "Java", level: 75 },
-      { name: "C#", level: 95 },
-      { name: "SQL", level: 85 },
-      { name: "NoSQL", level: 80 },
+      { name: "JavaScript", Proficiency: 90, mobile: 85 },
+      { name: "TypeScript", Proficiency: 85, mobile: 80 },
+      { name: "Python", Proficiency: 80, mobile: 75 },
+      { name: "Java", Proficiency: 75, mobile: 70 },
+      { name: "C#", Proficiency: 95, mobile: 90 },
+      { name: "SQL", Proficiency: 85, mobile: 80 },
+      { name: "NoSQL", Proficiency: 80, mobile: 75 },
     ],
     frameworks: [
-      { name: "React", level: 95 },
-      { name: "Next.js", level: 90 },
-      { name: "Node.js", level: 85 },
-      { name: "Express", level: 80 },
-      { name: "ASP.NET", level: 75 },
-      { name: "Spring Boot", level: 70 },
+      { name: "React", Proficiency: 95, mobile: 90 },
+      { name: "Next.js", Proficiency: 90, mobile: 85 },
+      { name: "Node.js", Proficiency: 85, mobile: 80 },
+      { name: "Express", Proficiency: 80, mobile: 75 },
+      { name: "ASP.NET", Proficiency: 75, mobile: 70 },
+      { name: "Spring Boot", Proficiency: 70, mobile: 65 },
     ],
     tools: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 85 },
-      { name: "Kubernetes", level: 75 },
-      { name: "AWS", level: 80 },
-      { name: "Azure", level: 70 },
+      { name: "Git", Proficiency: 90, mobile: 85 },
+      { name: "Docker", Proficiency: 85, mobile: 80 },
+      { name: "Azure", Proficiency: 70, mobile: 65 },
     ],
   };
+
+  const chartConfig = {
+    Proficiency: {
+      label: "Proficiency",
+      color: "hsl(var(--chart-1))",
+    },
+    mobile: {
+      label: "Mobile",
+      color: "hsl(var(--chart-2))",
+    },
+    label: {
+      color: "hsl(var(--background))",
+    },
+  } satisfies ChartConfig;
 
   const experiences = [
     {
@@ -217,7 +235,7 @@ export default function EnhancedLightModePortfolio() {
       responsibilities: [
         "Developed web applications using PHP and Bootstrap",
         "Collaborated with the team to enhance user interfaces",
-        "Improved website functionality"
+        "Improved website functionality",
       ],
     },
     {
@@ -227,7 +245,7 @@ export default function EnhancedLightModePortfolio() {
       responsibilities: [
         "Provided exceptional customer support through various channels",
         "Resolved customer inquiries and issues in a timely manner",
-        "Maintained accurate records of interactions"
+        "Maintained accurate records of interactions",
       ],
     },
     {
@@ -237,11 +255,10 @@ export default function EnhancedLightModePortfolio() {
       responsibilities: [
         "Developing and maintaining web applications using Azure, React, Next.js, Tailwind, MongoDB, Laravel, and MySQL",
         "Managing system administration tasks",
-        "Ensuring optimal performance of IT infrastructure"
+        "Ensuring optimal performance of IT infrastructure",
       ],
     },
   ];
-  
 
   const education = [
     {
@@ -268,7 +285,6 @@ export default function EnhancedLightModePortfolio() {
 
   return (
     <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
-      
       <div className="bg-white text-gray-900 dark:bg-[#18191A] dark:text-[#E4E6EB] w-full overflow-hidden">
         {/* Header */}
         <header className="fixed top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur dark:border-[#3E4042] dark:bg-[#242526]/95">
@@ -391,7 +407,6 @@ export default function EnhancedLightModePortfolio() {
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                
                 <Avatar className="h-[300px] w-[300px] mx-auto mb-4">
                   <AvatarImage
                     src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/447772630_2787488948073950_480088435303528636_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=244rMvgN63oQ7kNvgFH8WH0&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=ANPXIHIINOjYqcYPkx5bfru&oh=00_AYBEmXhpRykeJxcMh6WivjFazNX6hljpUtcnmx-r4DXRvA&oe=670C7D8B"
@@ -418,58 +433,69 @@ export default function EnhancedLightModePortfolio() {
               </motion.p>
 
               {/* Contact Section */}
-          <motion.section
-            className=""
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <div className="flex gap-2 justify-center mb-3">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
+              <motion.section
+                className=""
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
               >
-                <Button
-                onClick={() => {window.location.href = "mailto:jamesxcasipong@gmail.com";}}
-                  variant="outline"
-                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
-                >
-                  <Mail  className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">Email</p>
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                onClick={() => {window.location.href = "https://www.linkedin.com/in/jamescasipong/";}}
-                  variant="outline"
-                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
-                >
-                  <Linkedin className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">Linkedin</p>
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Button
-                onClick={() => {window.location.href = "https://github.com/jamescasipong";}}
-                  variant="outline"
-                  className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
-                >
-                  <Github className="sm:mr-2 h-4 w-4" /> <p className="sm:block hidden">GitHub</p>
-                </Button>
-              </motion.div>
-            </div>
-          </motion.section>
+                <div className="flex gap-2 justify-center mb-3">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        window.location.href =
+                          "mailto:jamesxcasipong@gmail.com";
+                      }}
+                      variant="outline"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                    >
+                      <Mail className="sm:mr-2 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">Email</p>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        window.location.href =
+                          "https://www.linkedin.com/in/jamescasipong/";
+                      }}
+                      variant="outline"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                    >
+                      <Linkedin className="sm:mr-2 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">Linkedin</p>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        window.location.href =
+                          "https://github.com/jamescasipong";
+                      }}
+                      variant="outline"
+                      className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:text-[#2374E1] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                    >
+                      <Github className="sm:mr-2 h-4 w-4" />{" "}
+                      <p className="sm:block hidden">GitHub</p>
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.section>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                
                 <ChevronDown className="mx-auto animate-bounce text-gray-400 dark:text-[#B0B3B8]" />
               </motion.div>
             </div>
@@ -540,24 +566,26 @@ export default function EnhancedLightModePortfolio() {
                             View Project
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="bg-white dark:bg-[#242526]">
-                          <DialogHeader>
+                        <DialogContent className="bg-white w-full max-w-[80%] h-[80%] dark:bg-[#242526] overflow-y-auto">
+                          <DialogHeader className="">
                             <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
                               {project.title}
                             </DialogTitle>
                             <DialogDescription className="dark:text-[#B0B3B8]">
                               {project.description}
                             </DialogDescription>
-                          </DialogHeader>
-                          <div className="mt-4">
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="w-full h-64 object-cover rounded-md mb-4"
-                            />
-                            <p className="text-gray-600 dark:text-[#B0B3B8]">
+                            <p className="text-gray-600 dark:text-[#B0B3B8] text-center ">
                               {project.details}
                             </p>
+                          </DialogHeader>
+                          <div className="mt-2">
+                            <div>
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-[100%] h-[100%] rounded-lg border"
+                              />
+                            </div>
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -580,7 +608,7 @@ export default function EnhancedLightModePortfolio() {
             <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+            <Card className="bg-white  dark:bg-[#242526] sm:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
               <CardContent className="pt-6">
                 <Tabs defaultValue="languages" className="w-full text-center ">
                   <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 ">
@@ -604,35 +632,61 @@ export default function EnhancedLightModePortfolio() {
                     </TabsTrigger>
                   </TabsList>
                   {Object.entries(skills).map(([category, items]) => (
-                    <TabsContent key={category} value={category}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-4">
-                          {items.map((skill, index) => (
-                            <div
-                              key={index}
-                              className="flex items-center justify-between"
+                    <TabsContent
+                      className="border-0"
+                      key={category}
+                      value={category}
+                    >
+                      <div className="">
+                        <ChartContainer
+                          className="h-[50%]"
+                          config={chartConfig}
+                        >
+                          <BarChart
+                            data={skills[category as keyof typeof skills]}
+                            layout="vertical"
+                            margin={{
+                              right: 16,
+                            }}
+                          >
+                            <CartesianGrid horizontal={false} />
+                            <YAxis
+                              dataKey="name"
+                              type="category"
+                              tickLine={false}
+                              tickMargin={5}
+                              axisLine={false}
+                              tickFormatter={(value) => value.slice(0, 3)}
+                              hide
+                            />
+                            <XAxis dataKey="Proficiency" type="number" hide />
+                            <Tooltip
+                              cursor={false}
+                              content={<ChartTooltipContent indicator="line" />}
+                            />
+                            <Bar
+                              dataKey="Proficiency"
+                              layout="vertical"
+                              className="fill-blue-600"
+                              radius={4}
                             >
-                              <span className="text-gray-700 dark:text-[#B0B3B8]">
-                                {skill.name}
-                              </span>
-                              <span className="text-blue-600 dark:text-[#2374E1] font-semibold">
-                                {skill.level}%
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="sm:block hidden h-[300px]">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={items}>
-                              <XAxis dataKey="name" />
-                              <YAxis />
-                              <Bar
-                                dataKey="level"
-                                fill={darkMode ? "#2374E1" : "#2563EB"}
+                              <LabelList
+                                dataKey="name"
+                                position="insideLeft"
+                                offset={8}
+                                className="fill-white"
+                                fontSize={12}
                               />
-                            </BarChart>
-                          </ResponsiveContainer>
-                        </div>
+                              <LabelList
+                                dataKey="Proficiency"
+                                position="right"
+                                offset={8}
+                                className="text-white"
+                                fontSize={12}
+                              />
+                            </Bar>
+                          </BarChart>
+                        </ChartContainer>
                       </div>
                     </TabsContent>
                   ))}
@@ -651,10 +705,9 @@ export default function EnhancedLightModePortfolio() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl text-center font-bold mb-8 text-blue-600 dark:text-[#2374E1]">
-                Experience & Education
-              </h2>
+              Experience & Education
+            </h2>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-              
               <div className="">
                 <h3 className="text-2xl font-semibold mb-4 text-center text-blue-600 dark:text-[#2374E1]">
                   Work Experience
@@ -666,7 +719,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-2">
+                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {job.title}
@@ -702,7 +755,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-2">
+                    <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {edu.degree}
@@ -751,7 +804,7 @@ export default function EnhancedLightModePortfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                  <Card className="bg-white  dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                     <CardHeader>
                       <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                         {post.title}
@@ -775,17 +828,29 @@ export default function EnhancedLightModePortfolio() {
                             Read More
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="bg-white dark:bg-[#242526]">
+                        <DialogContent
+                          className={`max-w-3xl w-full ${
+                            darkMode ? "bg-[#3E4042] text-white" : ""
+                          }`}
+                        >
                           <DialogHeader>
                             <DialogTitle className="text-blue-600 dark:text-[#2374E1]">
                               {post.title}
                             </DialogTitle>
-                            <DialogDescription className="dark:text-[#B0B3B8]">
+                            <DialogDescription
+                              className={`${
+                                darkMode ? "bg-[#3E4042] text-[#fafcff]" : ""
+                              }`}
+                            >
                               Posted on {post.date}
                             </DialogDescription>
                           </DialogHeader>
                           <div className="mt-4">
-                            <p className="text-gray-600 dark:text-[#B0B3B8]">
+                            <p
+                              className={`${
+                                darkMode ? "bg-[#3E4042] text-white" : ""
+                              }`}
+                            >
                               {post.content}
                             </p>
                           </div>
@@ -797,8 +862,6 @@ export default function EnhancedLightModePortfolio() {
               ))}
             </div>
           </motion.section>
-
-          
         </main>
 
         {/* Footer */}
