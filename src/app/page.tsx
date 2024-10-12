@@ -768,7 +768,13 @@ export default function EnhancedLightModePortfolio() {
                     Sort by: {sortOrder === "latest" ? "Latest" : "Oldest"}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent
+                  className={`${
+                    darkMode
+                      ? "bg-gray-700 text-white border border-gray-600 "
+                      : ""
+                  }`}
+                >
                   <DropdownMenuItem onClick={() => setSortOrder("latest")}>
                     Latest
                   </DropdownMenuItem>
