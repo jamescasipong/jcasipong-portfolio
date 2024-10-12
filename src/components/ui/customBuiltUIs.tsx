@@ -134,6 +134,8 @@ export function CarouselApi({ images }: { images: string[] }) {
           <span
             key={index}
             className={`h-2 w-2 rounded-full ${
+              images.length == 1 ? "hidden" : ""
+            }  ${
               current === index + 1
                 ? "dark:bg-white bg-blue-600"
                 : "bg-gray-400"

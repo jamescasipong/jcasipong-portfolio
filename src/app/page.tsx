@@ -489,7 +489,7 @@ export default function EnhancedLightModePortfolio() {
             <h2 className="text-3xl text-center font-bold mb-4 text-blue-600 dark:text-[#2374E1]">
               Projects
             </h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 ">
               {projects.map((project, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
@@ -499,9 +499,9 @@ export default function EnhancedLightModePortfolio() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Card className="bg-white shadow-lg h-full relative  dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
+                      <Card className="bg-white shadow-lg h-full relative rounded-2xl dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
                         <CardHeader>
-                          <CardTitle className="text-blue-600 dark:text-[#2374E1]">
+                          <CardTitle className="text-blue-600 dark:text-[#2374E1] text-center">
                             {project.title}
                           </CardTitle>
 
@@ -592,7 +592,7 @@ export default function EnhancedLightModePortfolio() {
           <motion.section
             id="skills"
             className="py-16"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
@@ -600,7 +600,7 @@ export default function EnhancedLightModePortfolio() {
             <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className=" dark:bg-[#242526] md:w-[70%] border-gray-200 dark:border-[#3E4042] mx-auto">
+            <Card className=" dark:bg-[#242526] rounded-2xl md:w-[70%] border-gray-200 dark:border-[#3E4042] mx-auto">
               <CardContent className="pt-6">
                 <Tabs defaultValue="languages" className="w-full">
                   <div className="flex justify-center mb-4">
@@ -685,7 +685,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white rounded-2xl shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {job.title}
@@ -721,7 +721,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white rounded-2xl shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {edu.degree}
