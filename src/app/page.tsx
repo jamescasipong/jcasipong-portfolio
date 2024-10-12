@@ -643,7 +643,10 @@ export default function EnhancedLightModePortfolio() {
                                   alt={`${item.name} logo`}
                                   className="w-12 h-12 mb-2"
                                 />
-                                <Badge variant="secondary" className="mt-2">
+                                <Badge
+                                  variant="secondary"
+                                  className="mt-2 text-center sm:block hidden"
+                                >
                                   {item.name}
                                 </Badge>
                               </CardContent>
