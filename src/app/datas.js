@@ -20,7 +20,15 @@ const projects = [
     images: ["/hrconnect.png"], // Update with actual images if available
     source: "https://github.com/jamescasipong/hr-management-system",
     website: "https://hrconnect.vercel.app/",
-    stack: ["Next.js", "Node.js", "ASP.NET", "MySQL", "Tailwind", "Azure"],
+    stack: [
+      "Next.js",
+      "Node.js",
+      "ASP.NET",
+      "MySQL",
+      "Tailwind",
+      "Azure",
+      "TypeScript",
+    ],
   },
   {
     title: "Task Tracker",
@@ -29,7 +37,15 @@ const projects = [
     images: ["/monitor-task.png"], // Update with actual images if available
     source: "https://github.com/jamescasipong/task-tracker",
     website: "https://monitoring-task.vercel.app/", // Update with actual website if available
-    stack: ["MongoDB", "Express", "React", "Node.js", "Tailwind", "Azure"],
+    stack: [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js",
+      "Tailwind",
+      "Azure",
+      "JavaScript",
+    ],
   },
   {
     title: "React Bank Websites",
@@ -53,7 +69,7 @@ const projects = [
       "/optinet-3.png",
       "/optinet-4.png",
     ], // Update with actual images if available
-    stack: ["React", "Node.js", "Express", "MongoDB", "Tailwind"],
+    stack: ["React", "Node.js", "Laravel", "MongoDB", "Tailwind"],
   },
   {
     title: "Sample Portfolio",
