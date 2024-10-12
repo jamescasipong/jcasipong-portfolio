@@ -57,7 +57,6 @@ import {
   education,
   experiences,
   projects,
-  skills,
 } from "./datas";
 
 export default function EnhancedLightModePortfolio() {
@@ -81,6 +80,7 @@ export default function EnhancedLightModePortfolio() {
   }, []);
 
   useEffect(() => {
+    console.log(techStacks);
     if (typeof window !== "undefined") {
       const savedDarkMode = localStorage.getItem("darkMode");
       if (savedDarkMode) {
@@ -97,6 +97,93 @@ export default function EnhancedLightModePortfolio() {
       }
       return newDarkMode;
     });
+  };
+
+  const techStacks = {
+    languages: [
+      {
+        name: "JavaScript",
+        logo: "https://img.icons8.com/color/48/000000/javascript--v1.png",
+      },
+      {
+        name: "TypeScript",
+        logo: "https://img.icons8.com/color/48/000000/typescript.png",
+      },
+      {
+        name: "Python",
+        logo: "https://img.icons8.com/color/48/000000/python.png",
+      },
+      {
+        name: "Java",
+        logo: "https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png",
+      },
+      {
+        name: "C#",
+        logo: "https://img.icons8.com/color/48/000000/c-sharp-logo.png",
+      },
+      { name: "SQL", logo: "https://img.icons8.com/color/48/000000/sql.png" },
+      {
+        name: "NoSQL",
+        logo: "https://img.icons8.com/?size=100&id=ORJMCXQQSOMo&format=png&color=000000",
+      },
+    ],
+    frameworks: [
+      {
+        name: "React",
+        logo: "https://img.icons8.com/color/48/000000/react-native.png",
+      },
+      {
+        name: "Next.js",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg",
+      },
+      {
+        name: "Node.js",
+        logo: "https://img.icons8.com/color/48/000000/nodejs.png",
+      },
+      {
+        name: "Express",
+        logo: "https://img.icons8.com/color/48/000000/express.png",
+      },
+      {
+        name: "ASP.NET",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_.NET_logo.png",
+      },
+      {
+        name: "Spring Boot",
+        logo: "https://img.icons8.com/color/48/000000/spring-logo.png",
+      },
+      {
+        name: "Tailwind",
+        logo: "https://img.icons8.com/color/48/000000/tailwindcss.png",
+      },
+    ],
+    tools: [
+      { name: "Git", logo: "https://img.icons8.com/color/48/000000/git.png" },
+      {
+        name: "Docker",
+        logo: "https://img.icons8.com/color/48/000000/docker.png",
+      },
+      {
+        name: "Azure",
+        logo: "https://img.icons8.com/fluency/48/000000/azure-1.png",
+      },
+      {
+        name: "Visual Studio",
+        logo: "https://img.icons8.com/color/48/000000/visual-studio.png",
+      },
+      {
+        name: "MongoDB",
+        logo: "https://img.icons8.com/color/48/000000/mongodb.png",
+      },
+      {
+        name: "MySQL",
+        logo: "https://img.icons8.com/color/48/000000/mysql.png",
+      },
+      {
+        name: "Visual Studio Code",
+        logo: "https://img.icons8.com/fluency/48/000000/visual-studio-code-2019.png",
+      },
+    ],
   };
 
   const sections = [
@@ -412,7 +499,7 @@ export default function EnhancedLightModePortfolio() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Card className="bg-white shadow-lg h-full relative dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
+                      <Card className="bg-white shadow-lg h-full relative  dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
                         <CardHeader>
                           <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                             {project.title}
@@ -447,7 +534,7 @@ export default function EnhancedLightModePortfolio() {
                           <img
                             src={project.images[0]}
                             alt={project.title}
-                            className="w-full h-48 object-cover rounded-md mb-4"
+                            className="w-full h-48 object-cover border rounded-md mb-4"
                           />
                         </CardContent>
                       </Card>
@@ -510,87 +597,59 @@ export default function EnhancedLightModePortfolio() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-8 text-center  text-blue-600 dark:text-[#2374E1]">
+            <h2 className="text-3xl font-bold mb-8 text-center text-blue-600 dark:text-[#2374E1]">
               Skills & Technology Stack
             </h2>
-            <Card className="bg-white shadow-lg dark:bg-[#242526] md:w-[65%] border-gray-200 dark:border-[#3E4042] mx-auto">
-              <CardContent className="pt-6 ">
-                <Tabs defaultValue="languages" className="w-full text-center ">
-                  <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] mb-4 border py-5">
-                    <TabsTrigger
-                      value="languages"
-                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
-                    >
-                      Languages
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="frameworks"
-                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
-                    >
-                      Frameworks
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="tools"
-                      className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
-                    >
-                      Tools
-                    </TabsTrigger>
-                  </TabsList>
-                  {Object.entries(skills).map(([category, items]) => (
-                    <TabsContent
-                      className="border-0"
-                      key={category}
-                      value={category}
-                    >
-                      <div className="">
-                        <ChartContainer className="" config={chartConfig}>
-                          <BarChart
-                            data={skills[category as keyof typeof skills]}
-                            layout="vertical"
-                            barCategoryGap="10%"
+            <Card className=" dark:bg-[#242526] md:w-[70%] border-gray-200 dark:border-[#3E4042] mx-auto">
+              <CardContent className="pt-6">
+                <Tabs defaultValue="languages" className="w-full">
+                  <div className="flex justify-center mb-4">
+                    <TabsList className="bg-gray-100 dark:bg-[#3A3B3C] border py-5">
+                      <TabsTrigger
+                        value="languages"
+                        className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
+                      >
+                        Languages
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="frameworks"
+                        className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
+                      >
+                        Frameworks
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="tools"
+                        className="data-[state=active]:bg-white sm:text-[15px] text-[12px] dark:data-[state=active]:bg-[#242526]"
+                      >
+                        Tools
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+                  {Object.entries(techStacks).map(([category, items]) => (
+                    <TabsContent key={category} value={category}>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        {items.map((item, index) => (
+                          <motion.div
+                            key={index}
+                            whileHover={{ scale: 1.05 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.05 }}
                           >
-                            <CartesianGrid horizontal={false} />
-                            <YAxis
-                              dataKey="name"
-                              type="category"
-                              tickLine={false}
-                              axisLine={false}
-                              tickFormatter={(value) => value.slice(0, 3)}
-                              hide
-                            />
-                            <XAxis
-                              dataKey="Proficiency"
-                              type="number"
-                              domain={[0, 11]}
-                              hide
-                            />
-                            <Tooltip
-                              cursor={false}
-                              content={<ChartTooltipContent indicator="line" />}
-                            />
-                            <Bar
-                              dataKey="Proficiency"
-                              layout="vertical"
-                              className="fill-blue-600"
-                              radius={10}
-                            >
-                              <LabelList
-                                dataKey="name"
-                                position="insideLeft"
-                                offset={8}
-                                className="fill-white"
-                                fontSize={12}
-                              />
-                              <LabelList
-                                dataKey="Proficiency"
-                                position="right"
-                                offset={8}
-                                className="text-white"
-                                fontSize={12}
-                              />
-                            </Bar>
-                          </BarChart>
-                        </ChartContainer>
+                            <Card className="bg-white dark:bg-[#3A3B3C] border-gray-200 dark:border-[#4E4F50] shadow-sm hover:shadow-md transition-shadow duration-300">
+                              <CardContent className="p-4 flex flex-col items-center justify-center">
+                                <img
+                                  src={item.logo}
+                                  alt={`${item.name} logo`}
+                                  className="w-12 h-12 mb-2"
+                                />
+                                <Badge variant="secondary" className="mt-2">
+                                  {item.name}
+                                </Badge>
+                              </CardContent>
+                            </Card>
+                          </motion.div>
+                        ))}
                       </div>
                     </TabsContent>
                   ))}

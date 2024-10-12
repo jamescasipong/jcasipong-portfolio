@@ -109,36 +109,6 @@ const blogPosts = [
   },
 ];
 
-const skills = {
-  languages: [
-    { name: "JavaScript", Proficiency: 8, mobile: 6.5 },
-    { name: "TypeScript", Proficiency: 6.5, mobile: 6 },
-    { name: "Python", Proficiency: 5.5, mobile: 5 },
-    { name: "Java", Proficiency: 8, mobile: 5.5 },
-    { name: "C#", Proficiency: 8, mobile: 6 },
-    { name: "SQL", Proficiency: 6, mobile: 5.5 },
-    { name: "NoSQL", Proficiency: 5.5, mobile: 5 },
-  ],
-  frameworks: [
-    { name: "React", Proficiency: 7, mobile: 6.5 },
-    { name: "Next.js", Proficiency: 6.5, mobile: 6 },
-    { name: "Node.js", Proficiency: 6, mobile: 5.5 },
-    { name: "Express", Proficiency: 5.5, mobile: 5 },
-    { name: "ASP.NET", Proficiency: 5, mobile: 4.5 },
-    { name: "Spring Boot", Proficiency: 5, mobile: 4.5 },
-    { name: "Tailwind", Proficiency: 6.5, mobile: 6 },
-  ],
-  tools: [
-    { name: "Git", Proficiency: 7, mobile: 6.5 },
-    { name: "Docker", Proficiency: 6, mobile: 5.5 },
-    { name: "Azure", Proficiency: 5, mobile: 4.5 },
-    { name: "Visual Studio", Proficiency: 5, mobile: 4.5 },
-    { name: "MongoDB", Proficiency: 6, mobile: 5.5 },
-    { name: "MySQL", Proficiency: 6.5, mobile: 6 },
-    { name: "Visual Studio Code", Proficiency: 7, mobile: 6.5 },
-  ],
-};
-
 const chartConfig = {
   Proficiency: {
     label: "Proficiency",
@@ -209,4 +179,4 @@ const education = [
   },
 ];
 
-export { blogPosts, chartConfig, education, experiences, projects, skills };
+export { blogPosts, chartConfig, education, experiences, projects };
