@@ -417,7 +417,7 @@ export default function EnhancedLightModePortfolio() {
                   >
                     <Button
                       onClick={() => {
-                        window.open("/Resume.pdf", "_blank");
+                        window.open("/Resumeee.pdf", "_blank");
                       }}
                       variant="outline"
                       className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042] dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
