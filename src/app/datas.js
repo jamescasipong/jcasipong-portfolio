@@ -31,12 +31,12 @@ const projects = [
     ],
   },
   {
-    title: "Task Tracker",
+    title: "Monitor360",
     description:
       "A web application built with the MERN stack for managing employee data. It allows users to convert Excel files to JSON, view and edit data, and update the database.",
     images: ["/monitor-task.png"], // Update with actual images if available
     source: "https://github.com/jamescasipong/task-tracker",
-    website: "https://monitoring-task.vercel.app/", // Update with actual website if available
+    website: "https://monitor360.vercel.app/", // Update with actual website if available
     stack: [
       "MongoDB",
       "Express",
