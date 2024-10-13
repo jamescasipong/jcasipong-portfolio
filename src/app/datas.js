@@ -145,7 +145,7 @@ const experiences = [
     ],
   },
   {
-    title: "IT Admin & System Developer",
+    title: "IT Admin & Full Stack Developer",
     company: "Army Navy Burger",
     period: "August 2024 - Present",
     responsibilities: [
