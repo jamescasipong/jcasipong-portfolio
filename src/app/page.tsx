@@ -1,6 +1,7 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 import { CarouselApi } from "@/components/ui/customBuiltUIs";
 import {
   Dialog,
@@ -26,16 +26,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronDown,
   Code,
+  FileUser,
   Github,
   Globe,
   Linkedin,
-  FileUser,
   Mail,
   Moon,
   Sun,
@@ -43,20 +42,10 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import {
   blogPosts,
-  chartConfig,
   education,
   experiences,
-  projects,
+  projects
 } from "./datas";
 
 export default function EnhancedLightModePortfolio() {
@@ -494,12 +483,11 @@ export default function EnhancedLightModePortfolio() {
                 <Dialog key={index}>
                   <DialogTrigger asChild>
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.3, delay: index * 0.2 }}
                     >
-                      <Card className="bg-white shadow-lg h-full relative rounded-2xl dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800 duration-150 border-gray-200 dark:border-[#3E4042] cursor-pointer">
+                      <Card className="bg-white shadow-lg h-full hover:scale-105 duration-300 ease-in-out relative rounded-2xl dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800  border-gray-200 dark:border-[#3E4042] cursor-pointer">
                         <CardHeader>
                           <CardTitle className="text-blue-600 dark:text-[#2374E1] text-center">
                             {project.title}
@@ -631,12 +619,11 @@ export default function EnhancedLightModePortfolio() {
                         {items.map((item, index) => (
                           <motion.div
                             key={index}
-                            whileHover={{ scale: 1.05 }}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
                           >
-                            <Card className="bg-white dark:bg-[#3A3B3C] border-gray-200 dark:border-[#4E4F50] shadow-sm hover:shadow-md transition-shadow duration-300">
+                            <Card className="bg-white dark:bg-[#3A3B3C] hover:scale-105 duration-300 transition-all ease-in-out border-gray-200 dark:border-[#4E4F50] shadow-sm hover:shadow-md  ">
                               <CardContent className="p-4 flex flex-col items-center justify-center">
                                 <img
                                   src={item.logo}
