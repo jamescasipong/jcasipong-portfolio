@@ -39,7 +39,7 @@ const projects = [
     website: "https://monitor360.vercel.app/", // Update with actual website if available
     stack: [
       "MongoDB",
-      "Express",
+      "Laravel",
       "React",
       "Node.js",
       "Tailwind",
