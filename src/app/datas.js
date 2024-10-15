@@ -45,6 +45,7 @@ const projects = [
       "Tailwind",
       "Azure",
       "JavaScript",
+      "SEO",
     ],
   },
   {
