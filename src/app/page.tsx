@@ -313,7 +313,7 @@ export default function EnhancedLightModePortfolio() {
         </AnimatePresence>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 sm:pt-16 pt-18">
+        <main className="container mx-auto px-4 sm:pt-16 pt-18 ">
           {/* Home Section */}
           <motion.section
             id="home"
@@ -329,10 +329,7 @@ export default function EnhancedLightModePortfolio() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <Avatar className="md:h-[400px] md:w-[400px] h-[300px] w-[300px] mx-auto mb-4">
-                  <AvatarImage
-                    src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/447772630_2787488948073950_480088435303528636_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=244rMvgN63oQ7kNvgFH8WH0&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=ANPXIHIINOjYqcYPkx5bfru&oh=00_AYBEmXhpRykeJxcMh6WivjFazNX6hljpUtcnmx-r4DXRvA&oe=670C7D8B"
-                    alt="James Casipong"
-                  />
+                  <AvatarImage src="/sb.jpg" alt="James Casipong" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
               </motion.div>
