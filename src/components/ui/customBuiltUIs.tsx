@@ -33,7 +33,13 @@ export function CarouselDemo() {
 
 import { type CarouselApi } from "@/components/ui/carousel";
 
-export function CarouselApi({ images }: { images: string[] }) {
+export function CarouselApi({
+  is360,
+  images,
+}: {
+  is360: boolean;
+  images: string[];
+}) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -138,11 +144,27 @@ export function CarouselApi({ images }: { images: string[] }) {
             <CarouselContent>
               {images.map((image, index) => (
                 <CarouselItem key={index}>
-                  <img
-                    className="border rounded-lg shadow-lg "
-                    src={image}
-                    alt=""
-                  />
+                  {is360 && (
+                    <div className="w-full">
+                      <p className="z-50 absolute text-black flex w-full h-full justify-center items-center px-32 text-center">
+                        You can't view 360 images on this platform due to
+                        privacy reasons. Website can only be accessed only on
+                        the domain where it is hosted. Please check out Github.
+                      </p>
+                      <div
+                        className="border rounded-lg shadow-sm
+                    w-full h-[320px] md:h-[460px] filter blur-sm bg-white z-0 relative"
+                      ></div>
+                    </div>
+                  )}
+                  {!is360 && (
+                    <img
+                      className={`border 
+                    } rounded-lg shadow-sm `}
+                      src={image}
+                      alt=""
+                    />
+                  )}
                 </CarouselItem>
               ))}
             </CarouselContent>

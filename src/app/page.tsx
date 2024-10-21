@@ -514,7 +514,11 @@ export default function EnhancedLightModePortfolio() {
                           <img
                             src={project.images[0]}
                             alt={project.title}
-                            className="w-full h-48 object-cover border rounded-md mb-4"
+                            className={`w-full h-48 ${
+                              project.title == "Monitor360"
+                                ? "filter blur-sm"
+                                : ""
+                            } object-cover border rounded-md mb-4`}
                           />
                         </CardContent>
                       </Card>
@@ -561,7 +565,10 @@ export default function EnhancedLightModePortfolio() {
                         {project.description}
                       </DialogDescription>
                     </DialogHeader>
-                    <CarouselApi images={project.images} />
+                    <CarouselApi
+                      is360={project.title == "Monitor360"}
+                      images={project.images}
+                    />
                   </DialogContent>
                 </Dialog>
               ))}
