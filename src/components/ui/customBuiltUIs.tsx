@@ -160,7 +160,7 @@ export function CarouselApi({
                   {!is360 && (
                     <img
                       className={`border 
-                    } rounded-lg shadow-sm `}
+                    } rounded-lg shadow-sm`}
                       src={image}
                       alt=""
                     />

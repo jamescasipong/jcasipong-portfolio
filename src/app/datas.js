@@ -77,6 +77,7 @@ const projects = [
       "/optinet-2.png",
       "/optinet-3.png",
       "/optinet-4.png",
+      "/optinet-5.png",
     ], // Update with actual images if available
     stack: [
       "React",
