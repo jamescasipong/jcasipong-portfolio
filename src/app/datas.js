@@ -41,7 +41,7 @@ const projects = [
   {
     title: "Monitor360",
     description:
-      "A web application built with the MERN stack for managing employee data. It allows users to convert Excel files to JSON, view and edit data, and update the database.",
+      "A web application built with the ASP & React stack for managing employee data. It allows users to convert Excel files to JSON, view and edit data, and update the database.",
     images: ["/monitor-task.png"], // Update with actual images if available
     source: "https://github.com/jamescasipong/task-tracker",
     website: "https://monitor360.vercel.app/", // Update with actual website if available
