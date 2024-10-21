@@ -17,7 +17,14 @@ const projects = [
     title: "HRConnect",
     description:
       "A website for employees to clock in/out, check payroll, attendances, performances, and file leaves. HRConnect simplifies employee management with features like payroll tracking, performance reviews, leave requests, and attendance monitoring.",
-    images: ["/hrconnect.png"], // Update with actual images if available
+    images: [
+      "/hrconnect-1.png",
+      "/hrconnect-2.png",
+      "/hrconnect-3.png",
+      "/hrconnect-4.png",
+      "/hrconnect-5.png",
+      "/hrconnect-6.png",
+    ], // Update with actual images if available
     source: "https://github.com/jamescasipong/hr-management-system",
     website: "https://hrconnect.vercel.app/",
     stack: [
