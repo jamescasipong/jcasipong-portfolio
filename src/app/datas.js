@@ -28,6 +28,7 @@ const projects = [
       "Tailwind",
       "Azure",
       "TypeScript",
+      "REST API",
     ],
   },
   {
@@ -39,13 +40,13 @@ const projects = [
     website: "https://monitor360.vercel.app/", // Update with actual website if available
     stack: [
       "MongoDB",
-      "Laravel",
+      "ASP.NET",
       "React",
       "Node.js",
       "Tailwind",
       "Azure",
       "JavaScript",
-      "SEO",
+      "REST API",
     ],
   },
   {
@@ -58,9 +59,9 @@ const projects = [
     stack: ["React", "Tailwind"],
   },
   {
-    title: "ISP Services",
-    website: "https://hrconnect.vercel.app/",
-    source: "https://github.com/jamescasipong/hr-management-system/",
+    title: "OPTINET ISP Services",
+    website: "https://optinet-official.vercel.app/",
+    source: "https://github.com/jamescasipong/isp-services",
     description:
       "A website for managing Internet Service Provider (ISP) services. It is designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
     images: [
@@ -70,7 +71,15 @@ const projects = [
       "/optinet-3.png",
       "/optinet-4.png",
     ], // Update with actual images if available
-    stack: ["React", "Node.js", "Laravel", "MongoDB", "Tailwind"],
+    stack: [
+      "React",
+      "Node.js",
+      "Laravel",
+      "MongoDB",
+      "Tailwind",
+      "SEO",
+      "REST API",
+    ],
   },
   {
     title: "Sample Portfolio",
