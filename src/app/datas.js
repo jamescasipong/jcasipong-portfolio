@@ -81,15 +81,6 @@ const projects = [
       "REST API",
     ],
   },
-  {
-    title: "Sample Portfolio",
-    description:
-      "A portfolio showcasing educational background, experiences, skills, and projects built with VanillaJS. This temporary portfolio highlights personal achievements and serves as a resume.",
-    images: ["/portfolio.png"], // Update with actual images if available
-    source: "https://github.com/jamescasipong/sample-portfolio",
-    website: "https://jcasipong-dev.vercel.app/", // Update with actual website if available
-    stack: ["HTML", "CSS", "JavaScript"],
-  },
 ];
 
 const blogPosts = [
