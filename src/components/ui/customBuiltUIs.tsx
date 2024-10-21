@@ -143,9 +143,9 @@ export function CarouselApi({
           <Carousel className="mb-5" setApi={setApi}>
             <CarouselContent>
               {images.map((image, index) => (
-                <CarouselItem key={index}>
+                <CarouselItem className="rounded-lg" key={index}>
                   {is360 && (
-                    <div className="w-full">
+                    <div className="w-full p-2">
                       <p className="z-50 absolute text-black flex w-full h-full justify-center items-center px-32 text-center">
                         You can't view 360 images on this platform due to
                         privacy reasons. Website can only be accessed only on
