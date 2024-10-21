@@ -671,7 +671,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Card className="bg-white rounded-2xl shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white rounded-2xl shadow-lg h-full dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {job.title}
@@ -707,7 +707,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white rounded-2xl shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
+                    <Card className="bg-white rounded-2xl shadow-lg h-full dark:bg-[#242526] border-gray-200 dark:border-[#3E4042] mt-4">
                       <CardHeader>
                         <CardTitle className="text-xl font-semibold text-blue-600 dark:text-[#2374E1]">
                           {edu.degree}
@@ -784,7 +784,7 @@ export default function EnhancedLightModePortfolio() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="bg-white shadow-lg dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
+                    <Card className="bg-white shadow-lg h-full dark:bg-[#242526] border-gray-200 dark:border-[#3E4042]">
                       <CardHeader>
                         <CardTitle className="text-blue-600 dark:text-[#2374E1]">
                           {post.title}
@@ -794,7 +794,7 @@ export default function EnhancedLightModePortfolio() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8]">
+                        <p className="text-gray-600 sm:text-[16px] text-[13px] dark:text-[#B0B3B8] mb-7">
                           {post.excerpt}
                         </p>
                       </CardContent>
@@ -803,7 +803,7 @@ export default function EnhancedLightModePortfolio() {
                           <DialogTrigger asChild>
                             <Button
                               variant="outline"
-                              className="border-gray-200 text-blue-600 hover:bg-blue-50 dark:border-[#3E4042]  dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
+                              className="border-gray-200 text-blue-600 bottom-0 absolute mb-5 hover:bg-blue-50 dark:border-[#3E4042]  dark:hover:bg-[#3A3B3C] dark:bg-[#2374E1] dark:text-white"
                             >
                               Read More
                             </Button>
