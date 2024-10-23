@@ -89,6 +89,22 @@ const projects = [
       "REST API",
     ],
   },
+  {
+    title: "SocMediaHub",
+    website: "https://socmediahub.vercel.app/",
+    source: "https://github.com/jamescasipong/social-media-app",
+    description:
+      "A social media platform where users can create posts, like, comment, and follow other users. SocMediaHub is designed to provide a seamless and engaging social media experience.",
+    images: ["/social-media-app.png", "/social-media-app1.png"], // Update with actual images if available
+    stack: [
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind",
+      "REST API",
+    ],
+  },
 ];
 
 const blogPosts = [
