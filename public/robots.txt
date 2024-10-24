@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jcasipong.vercel.app
+
+# Sitemaps
+Sitemap: https://jcasipong.vercel.app/sitemap.xml

@@ -18,6 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/icon.svg" sizes="any" />
+        <meta
+          name="google-site-verification"
+          content="UjF9UWWXRWWjkvyNoyd3Vr8AzGc6FNX986su0cfvDCA"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="James Casipong" />
