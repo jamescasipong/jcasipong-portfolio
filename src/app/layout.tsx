@@ -41,6 +41,15 @@ export default function RootLayout({
           content="Explore the portfolio of James Casipong, a skilled full stack developer showcasing projects, skills, and professional experience."
         />
         <meta name="twitter:image" content="/twitter-image.jpg" />
+        <meta property="og:site_name" content="James Casipong Portfolio" />
+        <meta
+          property="og:profile"
+          content="https://www.linkedin.com/in/jamescasipong"
+        />
+        <meta
+          property="og:profile"
+          content="https://github.com/jamescasipong"
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
