@@ -476,8 +476,9 @@ export default function EnhancedLightModePortfolio() {
                   <DialogTrigger asChild>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.2 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2, delay: index * 0.1 }}
+                      viewport={{ once: true }}
                     >
                       <Card className="bg-white shadow-lg h-full hover:scale-105 duration-300 ease-in-out relative rounded-2xl dark:bg-[#242526] hover:bg-gray-100 transition dark:hover:bg-gray-800  border-gray-200 dark:border-[#3E4042] cursor-pointer">
                         <CardHeader>
@@ -491,11 +492,12 @@ export default function EnhancedLightModePortfolio() {
                                 key={lang}
                                 whileHover={{ scale: 1.1 }}
                                 initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 transition={{
-                                  duration: 0.5,
-                                  delay: index * 0.1,
+                                  duration: 0.2,
+                                  delay: index * 0.05,
                                 }}
+                                viewport={{ once: true }}
                               >
                                 <Badge
                                   className="border-gray-200 border dark:border-gray-700 dark:bg-gray-700"
@@ -619,8 +621,9 @@ export default function EnhancedLightModePortfolio() {
                           <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
+                            viewport={{ once: true }}
                           >
                             <Card className="bg-white dark:bg-[#3A3B3C] hover:scale-105 duration-300 transition-all ease-in-out border-gray-200 dark:border-[#4E4F50] shadow-sm hover:shadow-md  ">
                               <CardContent className="p-4 flex flex-col items-center justify-center">
