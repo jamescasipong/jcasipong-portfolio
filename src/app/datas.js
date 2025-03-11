@@ -66,30 +66,6 @@ const projects = [
     stack: ["React", "Tailwind"],
   },
   {
-    title: "OPTINET ISP Services",
-    website: "https://optinet-official.vercel.app/",
-    source: "https://github.com/jamescasipong/isp-services",
-    description:
-      "A website for managing Internet Service Provider (ISP) services. It is designed to provide a modern and efficient platform for customers to explore and manage ISP services.",
-    images: [
-      "/optinet.png",
-      "/optinet-1.png",
-      "/optinet-2.png",
-      "/optinet-3.png",
-      "/optinet-4.png",
-      "/optinet-5.png",
-    ], // Update with actual images if available
-    stack: [
-      "React",
-      "Node.js",
-      "Laravel",
-      "MongoDB",
-      "Tailwind",
-      "SEO",
-      "REST API",
-    ],
-  },
-  {
     title: "SocMediaHub",
     website: "https://socmediahub.vercel.app/",
     source: "https://github.com/jamescasipong/social-media-app",
