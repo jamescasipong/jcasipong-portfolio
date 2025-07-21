@@ -4,6 +4,9 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Toggle this to true to activate maintenance mode
+const maintenance = true;
+
 export const metadata: Metadata = {
   title: "James Casipong",
   description: "A showcase of my work and skills",
@@ -18,13 +21,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/icon.svg" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="James Casipong" />
         <meta
           name="google-site-verification"
           content="UjF9UWWXRWWjkvyNoyd3Vr8AzGc6FNX986su0cfvDCA"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="James Casipong" />
         <meta
           property="og:title"
           content="James Casipong - Full Stack Developer Portfolio"
@@ -55,7 +58,30 @@ export default function RootLayout({
           content="https://github.com/jamescasipong"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {maintenance ? (
+          <div
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              textAlign: "center",
+              padding: "2rem",
+              fontFamily: "inherit",
+            }}
+          >
+            <h1>We'll be back soon!</h1>
+            <p>
+              Our site is currently undergoing maintenance.<br />
+              Thank you for your patience.
+            </p>
+          </div>
+        ) : (
+          children
+        )}
+      </body>
     </html>
   );
 }
